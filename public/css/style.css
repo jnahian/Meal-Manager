@@ -1,0 +1,372 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+@import url('https://fonts.maateen.me/adorsho-lipi/font.css');
+
+body {
+    font-family: sans-serif, 'AdorshoLipi';
+}
+
+* {
+    outline: 0 !important;
+}
+
+.brand-logo {
+    display: flex !important;
+    align-items: center;
+}
+
+.brand-logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+.material-icons {
+    display: inline;
+    float: left;
+}
+
+nav ul li .material-icons {
+    margin-right: 10px;
+}
+
+#index-banner {
+    min-height: calc(100vh - 114px);
+}
+
+.btn .material-icons, .btn-large .material-icons, .side-nav .material-icons {
+    margin-right: 10px;
+}
+
+.container {
+    width: 80%;
+}
+
+.side-nav li a {
+    display: block;
+    color: #333;
+}
+
+.side-nav li.active a, .side-nav li:hover a {
+    color: #43a047;
+}
+
+.page-footer {
+    padding-top: 0;
+}
+
+.card > .card-title {
+    padding: 5px 20px;
+    background: #4bc6da33;
+    color: #26c6da;
+}
+
+.row {
+    margin-bottom: 10px !important;
+}
+
+.progress {
+    margin: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    position: absolute;
+    z-index: 9;
+    display: none;
+}
+
+.progress .determinate {
+    background-color: #e65100;
+}
+
+.card {
+    position: relative;
+}
+
+.pre-loader {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #eeeeeed9;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: ease-in-out .3s all;
+    -moz-transition: ease-in-out .3s all;
+    -ms-transition: ease-in-out .3s all;
+    -o-transition: ease-in-out .3s all;
+    transition: ease-in-out .3s all;
+}
+
+.pre-loader.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* label color */
+.input-field label {
+    color: #0097a7;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: #0097a7;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #0097a7;
+    box-shadow: 0 1px 0 0 #0097a7;
+}
+
+/* valid color */
+.input-field input[type=text].valid {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
+
+/* invalid color */
+.input-field input[type=text].invalid {
+    border-bottom: 1px solid #ff5722;
+    box-shadow: 0 1px 0 0 #ff5722;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: #000;
+}
+
+.btn-floating.btn-small > .material-icons {
+    display: inline-block;
+    float: none;
+    margin-left: 7px;
+    font-size: 20px;
+}
+
+.btn-floating.btn-small {
+    text-align: center;
+}
+
+
+.btn-small > .material-icons {
+    margin-right: 10px;
+}
+
+.btn, .btn-small, .btn-large {
+    display: inline-flex;
+    align-items: center;
+}
+
+.delete-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: .3s linear all;
+    -moz-transition: .3s linear all;
+    -ms-transition: .3s linear all;
+    -o-transition: .3s linear all;
+    transition: .3s linear all;
+    text-align: center !important;
+}
+
+.delete-form.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.delete-form form {
+    width: 30%;
+    background: #fff;
+    padding: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.delete-form form h3 {
+    margin-top: 0;
+    font-size: 24px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    line-height: 1.5;
+}
+
+.delete-form form button[type=submit] {
+    margin-right: 50px;
+}
+
+.confirm-logout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: .3s linear all;
+    -moz-transition: .3s linear all;
+    -ms-transition: .3s linear all;
+    -o-transition: .3s linear all;
+    transition: .3s linear all;
+    text-align: center !important;
+    color: #333;
+}
+
+.confirm-logout.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.confirm-logout form {
+    width: 30%;
+    height: 200px;
+    background: #fff;
+    padding: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.confirm-logout form h3 {
+    margin-top: 0;
+    font-size: 24px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    line-height: 1.5;
+}
+
+.confirm-logout form button[type=submit] {
+    margin-right: 50px;
+}
+
+.search-btn .material-icons {
+    margin-right: 0;
+}
+
+.input-field.inline {
+    width: 120px;
+}
+
+.pagination li > a {
+    margin-right: 0 !important;
+    color: #26c6da !important;
+}
+
+.pagination li.active > a {
+    color: #FFF !important;
+    background: #26c6da;
+}
+
+.pagination li.disabled > a {
+    color: #999 !important;
+}
+
+td, th {
+    padding: 10px 5px;
+    font-size: 14px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.report th, .report td {
+    padding: 5px;
+    font-size: 12px;
+}
+
+#columnchart_material, #curve_chart {
+    height: 400px;
+}
+
+.card .card-title {
+    font-size: 18px;
+    color: #343443;
+    position: relative;
+}
+
+.welcome {
+    margin-top: calc(50vh - 200px);
+}
+
+.invalid-feedback {
+    color: #f24500;
+}
+
+/*.card .card-title:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: #ddd;
+    bottom: 0;
+}*/
+
+@media (max-width: 767px) {
+    .container {
+        width: auto;
+    }
+
+    nav .brand-logo {
+        font-size: 1.5rem;
+    }
+
+    .sidenav-overlay {
+        z-index: 995;
+    }
+
+    .confirm-logout form {
+        width: 90%;
+    }
+
+    .confirm-logout form button[type=submit] {
+        margin-right: 10px;
+    }
+
+    #index-banner {
+        min-height: calc(100vh - 106px);
+    }
+
+    #columnchart_material, #curve_chart {
+        height: auto;
+    }
+
+    .welcome {
+        margin-top: 20vh;
+    }
+
+    .card-action .btn-small > .material-icons {
+        margin-right: 0;
+    }
+}
+
+/*wget --limit-rate=200k --no-clobber --convert-links --random-wait -r -p -E -e robots=off -U mozilla http://www.kossboss.com*/
