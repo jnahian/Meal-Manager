@@ -27,21 +27,22 @@
             </a>
 
             <ul class="right hide-on-med-and-down">
+                @if (Route::has('register'))
+                    <li>
+                        <a href="{{ route('register') }}">
+                            <i class="material-icons">person_add</i>New Member </a>
+                    </li>
+                @endif
                 @guest
                     <li>
                         <a href="{{ route('login') }}">
                             <i class="material-icons">lock_open</i>Sign In</a>
                     </li>
-                    @if (Route::has('register'))
-                        <li>
-                            <a href="{{ route('register') }}">
-                                <i class="material-icons">person_add</i>Registration </a>
-                        </li>
-                    @endif
                 @else
                     <li>
-                        <a href="{{ url()->previous() }}" class="tooltipped" data-position="left" data-tooltip="পূর্ববর্তী পাতা">
-                            <i class="material-icons">arrow_back</i>
+                        <a href="javascript:">
+                            <i class="material-icons">dashboard</i>
+                            Dashboard
                         </a>
                     </li>
                     <li>
@@ -71,13 +72,13 @@
                         <a href="{{ route('login') }}">
                             <i class="material-icons">lock_open</i>Sign In</a>
                     </li>
+                @else
                     @if (Route::has('register'))
                         <li>
                             <a href="{{ route('register') }}">
-                                <i class="material-icons">person_add</i>Registration </a>
+                                <i class="material-icons">person_add</i>New Member </a>
                         </li>
                     @endif
-                @else
                     <li>
                         <a href="javascript:">
                             <i class="material-icons">account_circle</i>
