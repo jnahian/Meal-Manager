@@ -5,7 +5,7 @@
 
         @include('elements.sideNav')
 
-        <div class="col m10 s12">
+        <div class="col m9 s12">
             <div class="card">
                 <div class="card-content">
                     <div id="columnchart_material"></div>

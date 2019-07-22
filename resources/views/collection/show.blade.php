@@ -39,7 +39,7 @@
                             <td>{!! status($collection->status, TRUE) !!}</td>
                         </tr>
                         <tr>
-                            <th width="15%">Created At</th>
+                            <th width="15%">Created</th>
                             <th width="20px">:</th>
                             <td>{{ $collection->created_at->format('d M, Y h:i A') }}</td>
                         </tr>

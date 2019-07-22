@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Expense;
+use App\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Ramsey\Uuid\Uuid;
 
 class ExpenseController extends Controller
 {
@@ -19,25 +19,30 @@ class ExpenseController extends Controller
      */
     public function index( Request $request )
     {
-        $title    = "Expanse List";
+        $title    = "Expense List";
         $expenses = new Expense();
-
+    
         if ( $request->s ) {
+            if ( $request->u ) {
+                $expenses = $expenses->where( 'user_id', $request->u );
+            }
             if ( $request->from ) {
-                $from = Carbon::parse( $request->from )->toDateString();
+                $from     = Carbon::parse( $request->from )->toDateString();
                 $expenses = $expenses->where( 'date', '>=', $from );
             }
             if ( $request->to ) {
-                $to = Carbon::parse( $request->to )->toDateString();
+                $to       = Carbon::parse( $request->to )->toDateString();
                 $expenses = $expenses->where( 'date', '<=', $to );
             }
         }
         $expenses = $expenses->orderByDesc( "date" );
         $expenses = $expenses->paginate( 15 )->appends( $request->all() );
-
-        return view( 'expense.index', compact( 'title', 'expenses' ) );
+    
+        $users = User::getDropdown();
+    
+        return view( 'expense.index', compact( 'title', 'expenses', 'users' ) );
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -45,10 +50,11 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        $title = "নতুন ব্যায় যোগ করুন";
-        return view( 'expense.create', compact( 'title' ) );
+        $title = "New Expense";
+        $users = User::getDropdown();
+        return view( 'expense.create', compact( 'title', 'users' ) );
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -57,34 +63,38 @@ class ExpenseController extends Controller
      */
     public function store( Request $request )
     {
-        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => false ];
+        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
         $request->validate( [
+            'user_id' => 'required',
             'date'    => 'required',
             'purpose' => 'required',
+            'type'    => 'required',
             'amount'  => 'required|numeric',
         ] );
-
+    
         try {
-            $expense = new Expense();
-            $expense->uuid = Uuid::uuid4();
-            $expense->user_id = Auth::user()->id;
-            $expense->date = Carbon::parse( $request->date )->toDateTimeString();
-            $expense->purpose = $request->purpose;
-            $expense->amount = $request->amount;
-            $expense->remarks = $request->remarks;
-            $expense->status = $request->status;
+            $expense             = new Expense();
+            $expense->date       = Carbon::parse( $request->date )->toDateTimeString();
+            $expense->user_id    = $request->user_id;
+            $expense->purpose    = $request->purpose;
+            $expense->amount     = $request->amount;
+            $expense->type       = $request->type;
+            $expense->remarks    = $request->remarks;
+            $expense->status     = $request->status;
+            $expense->created_by = Auth::user()->id;
+            $expense->created_at = Carbon::now()->toDateTimeString();
             $expense->save();
-
-            $response['success'] = TRUE;
+        
+            $response['success']  = TRUE;
             $response['redirect'] = $request->previous;
-            $response['msg'] = "ব্যায় সফলভাবে সংরক্ষিত হয়েছে।";
+            $response['msg']      = "Expense Saved Successfully!";
         } catch ( Exception $exception ) {
             $response['msg'] = $exception->getMessage();
         }
-
+    
         return response()->json( $response );
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -96,7 +106,7 @@ class ExpenseController extends Controller
         $title = "Show Details ";
         return view( 'expense.show', compact( 'title', 'expense' ) );
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -105,10 +115,11 @@ class ExpenseController extends Controller
      */
     public function edit( Expense $expense )
     {
-        $title = "ব্যায় পরিবর্তন";
-        return view( 'expense.edit', compact( 'title', 'expense' ) );
+        $title = "Edit Expense";
+        $users = User::getDropdown();
+        return view( 'expense.edit', compact( 'title', 'expense', 'users' ) );
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -118,29 +129,37 @@ class ExpenseController extends Controller
      */
     public function update( Request $request, Expense $expense )
     {
-        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => false ];
+        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
+        
         $request->validate( [
+            'user_id' => 'required',
             'date'    => 'required',
             'purpose' => 'required',
+            'type'    => 'required',
             'amount'  => 'required|numeric',
         ] );
+    
         try {
-            $expense->date = Carbon::parse( $request->date )->toDateTimeString();
-            $expense->purpose = $request->purpose;
-            $expense->amount = $request->amount;
-            $expense->remarks = $request->remarks;
-            $expense->status = $request->status;
+            $expense->date       = Carbon::parse( $request->date )->toDateTimeString();
+            $expense->user_id    = $request->user_id;
+            $expense->purpose    = $request->purpose;
+            $expense->amount     = $request->amount;
+            $expense->type       = $request->type;
+            $expense->remarks    = $request->remarks;
+            $expense->status     = $request->status;
+            $expense->updated_by = Auth::user()->id;
+            $expense->updated_at = Carbon::now()->toDateTimeString();
             $expense->save();
-
-            $response['success'] = TRUE;
+        
+            $response['success']  = TRUE;
             $response['redirect'] = $request->previous;
-            $response['msg'] = "ব্যায় সফলভাবে আপডেট হয়েছে।";
+            $response['msg']      = "Expense Updated Successfully!";
         } catch ( Exception $exception ) {
             $response['msg'] = $exception->getMessage();
         }
         return response()->json( $response );
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -149,17 +168,17 @@ class ExpenseController extends Controller
      */
     public function destroy( Expense $expense )
     {
-        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => false ];
-
+        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
+        
         try {
             $expense->delete();
-            $response['success'] = TRUE;
+            $response['success']  = TRUE;
             $response['redirect'] = route( 'expense.index' );
-            $response['msg'] = "ব্যায় মুছেফেলা হয়েছে।";
+            $response['msg']      = "Expense Deleted Successfully!";
         } catch ( Exception $exception ) {
             $response['msg'] = $exception->getMessage();
         }
-
+    
         return response()->json( $response );
     }
 }

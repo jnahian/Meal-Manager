@@ -5,7 +5,7 @@
 
         @include('elements.sideNav')
 
-        <div class="col m10 s12">
+        <div class="col m9 s12">
 
             <div class="card">
                 @include('elements.preloader')
@@ -39,12 +39,12 @@
                             <td>{!! status($income->status, TRUE) !!}</td>
                         </tr>
                         <tr>
-                            <th width="15%">যোগ করার সময়</th>
+                            <th width="15%">Created</th>
                             <th width="20px">:</th>
                             <td>{{ $income->created_at->format('d M, Y h:i A') }}</td>
                         </tr>
                         <tr>
-                            <th width="15%">আপডেট করার সময়</th>
+                            <th width="15%">Updated</th>
                             <th width="20px">:</th>
                             <td>{{ $income->updated_at->format('d M, Y h:i A') }}</td>
                         </tr>

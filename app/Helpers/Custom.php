@@ -50,6 +50,27 @@ if ( !function_exists( 'status' ) ) {
     }
 }
 
+if ( !function_exists( 'Expense_types' ) ) {
+    function Expense_types( $val = NULL, $badge = FALSE )
+    {
+        $status = [
+            'R' => "Regular",
+            'O' => "Others"
+        ];
+        
+        if ( $val ) {
+            if ( $badge ) {
+                if ( $val == 1 ) return "<span class='new badge green' data-badge-caption=''>{$status[$val]}</span>";
+                elseif ( $val == 9 ) return "<span class='new badge orange' data-badge-caption=''>{$status[$val]}</span>";
+            } else {
+                return isset( $status[$val] ) ? $status[$val] : "";
+            }
+        } else {
+            return $status;
+        }
+    }
+}
+
 if ( !function_exists( 'income_expense' ) ) {
     function income_expense( $val = NULL, $badge = false )
     {

@@ -5,7 +5,7 @@
 
         @include('elements.sideNav')
 
-        <div class="col m10 s12">
+        <div class="col m9 s12">
             {!! Form::open(['route' => 'income.store']) !!}
             <div class="card">
                 @include('elements.preloader')
@@ -58,6 +58,7 @@
     <script>
         $(document).ready(function () {
             $('.datepicker').datepicker({
+                format: 'dd-mm-yyyy',
                 autoClose: true,
             });
 

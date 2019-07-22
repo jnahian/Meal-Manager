@@ -5,7 +5,7 @@
 
         @include('elements.sideNav')
 
-        <div class="col m10 s12">
+        <div class="col m9 s12">
 
             <div class="card">
                 @php
@@ -41,10 +41,10 @@
                                 <tr class="green lighten-3">
                                     <th>#</th>
                                     <th width="12%">Date</th>
-                                    <th>আয়ের উৎস/ব্যয়ের খাত</th>
+                                    <th>আয়ের উৎস/Expense Details</th>
                                     <th class="center-align" width="8%">আয়/ব্যায়</th>
                                     <th width="15%" class="right-align">আয়ের পরিমাণ</th>
-                                    <th width="15%" class="right-align">ব্যায়ের পরিমাণ</th>
+                                    <th width="15%" class="right-align">Amount of Expense</th>
                                 </tr>
                                 </thead>
                                 <tbody>

@@ -5,7 +5,7 @@
 
         @include('elements.sideNav')
 
-        <div class="col m10 s12">
+        <div class="col m9 s12">
 
             <div class="card">
                 @include('elements.preloader')
@@ -37,8 +37,8 @@
                             <th>আয়ের উৎস</th>
                             <th>আয়ের পরিমাণ</th>
                             <th class="center-align">Status</th>
-                            <th class="center-align">সর্বশেষ আপডেট</th>
-                            <th class="center-align">একশন্স</th>
+                            <th class="center-align">Updated</th>
+                            <th class="center-align">Action</th>
                         </tr>
                         </thead>
                         <tbody>

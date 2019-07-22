@@ -10,6 +10,7 @@
         $('select').formSelect();
 
         $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
             autoClose: true,
         });
 

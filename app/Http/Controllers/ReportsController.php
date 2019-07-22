@@ -20,7 +20,7 @@ class ReportsController extends Controller
     {
         $title    = "প্রতিদিনের আয় / ব্যায়";
         $incomes  = $this->getDailyIncomeReport( $request );
-        $expenses = $this->getDailyExpanseReport( $request );
+        $expenses = $this->getDailyExpenseReport( $request );
         return view( 'reports.daily-income-expense', compact( 'title', 'incomes', 'expenses' ) );
     }
     
@@ -64,7 +64,7 @@ class ReportsController extends Controller
         return FALSE;
     }
     
-    public function getDailyExpanseReport( Request $request )
+    public function getDailyExpenseReport( Request $request )
     {
         if ( $request->s ) {
             $expenses = new Expense();

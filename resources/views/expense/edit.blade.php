@@ -5,27 +5,46 @@
 
         @include('elements.sideNav')
 
-        <div class="col m10 s12">
-            {!! Form::open(['route' => ['expense.update', $expense->uuid], 'method' => 'PUT']) !!}
+        <div class="col m9 s12">
+            {!! Form::open(['route' => ['expense.update', $expense->id], 'method' => 'PUT']) !!}
             {!! Form::hidden('previous', url()->previous()) !!}
             <div class="card">
                 @include('elements.preloader')
                 <div class="card-content">
                     <div class="card-title">{{ $title }}</div>
                     <div class="row">
+
+                        <div class="input-field col m4 s12">
+                            <select name="user_id" id="user_id">
+                                <option value="" disabled selected>Choose Member</option>
+                                @foreach($users as $id => $name)
+                                    <option value="{{ $id }}" {{ $id == $expense->user_id ? 'selected' : '' }}>{{ $name }}</option>
+                                @endforeach
+                            </select>
+                            <label for="user_id">Member <span class="red-text text-lighten-3">*</span></label>
+                        </div>
+
                         <div class="input-field col m4 s12">
                             <input type="text" name="date" id="date" class="datepicker validate" readonly value="{{ $expense->date ? $expense->date->format("M d, Y") : "" }}">
                             <label for="date">Date <span class="red-text text-lighten-3">*</span></label>
                         </div>
 
                         <div class="input-field col m4 s12">
+                            <input type="number" min="0" name="amount" id="amount" class="validate right-align" value="{{ $expense->amount ? $expense->amount : "" }}">
+                            <label for="amount">Amount of Expense <span class="red-text text-lighten-3">*</span></label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="input-field col m4 s12">
                             <input type="text" name="purpose" id="purpose" class="validate" value="{{ $expense->purpose ? $expense->purpose : "" }}">
-                            <label for="purpose">ব্যয়ের খাত <span class="red-text text-lighten-3">*</span></label>
+                            <label for="purpose">Expense Details <span class="red-text text-lighten-3">*</span></label>
                         </div>
 
                         <div class="input-field col m4 s12">
-                            <input type="number" min="0" name="amount" id="amount" class="validate right-align" value="{{ $expense->amount ? $expense->amount : "" }}">
-                            <label for="amount">ব্যায়ের পরিমাণ <span class="red-text text-lighten-3">*</span></label>
+                            {!! Form::select('type', Expense_types(), $expense->type); !!}
+                            <label for="type">Type <span class="red-text text-lighten-3">*</span></label>
                         </div>
                     </div>
 
@@ -59,6 +78,7 @@
     <script>
         $(document).ready(function () {
             $('.datepicker').datepicker({
+                format: 'dd-mm-yyyy',
                 autoClose: true,
             });
 
