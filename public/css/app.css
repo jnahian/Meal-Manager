@@ -34,7 +34,7 @@
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
     --font-family-sans-serif: "Nunito", sans-serif;
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier Add", monospace
 }
 
 *, :after, :before {
@@ -176,7 +176,7 @@ a:not([href]):not([tabindex]):focus {
 }
 
 code, kbd, pre, samp {
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier Add, monospace;
     font-size: 1em
 }
 
@@ -8239,7 +8239,7 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 }
 
 .text-monospace {
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier Add, monospace
 }
 
 .text-justify {

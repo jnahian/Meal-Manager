@@ -46,7 +46,7 @@ class UsersController extends Controller
      */
 //    public function create()
 //    {
-//        $title = "New User";
+//        $title = "Add User";
 //        $users = User::getDropdown();
 //        return view( 'user.create', compact( 'title', 'users' ) );
 //    }

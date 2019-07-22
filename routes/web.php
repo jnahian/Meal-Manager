@@ -25,6 +25,7 @@ Route::group( [ 'middleware' => 'auth' ], function () {
     
     Route::resource( '/collection', 'CollectionsController' );
     Route::resource( '/expense', 'ExpenseController' );
+    Route::resource( '/meal', 'MealsController' );
     
     Route::group( [ 'prefix' => 'report', 'as' => 'report.' ], function () {
         Route::get( '/', 'ReportsController@index' )->name( 'index' );

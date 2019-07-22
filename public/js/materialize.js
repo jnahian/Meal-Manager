@@ -2876,17 +2876,17 @@ var $jscomp$this = this;
                     e.preventDefault();
                     var direction = e.which === M.keys.ARROW_DOWN ? 1 : -1;
                     var newFocusedIndex = this.focusedIndex;
-                    var foundNewIndex = false;
+                    var foundAddIndex = false;
                     do {
                         newFocusedIndex = newFocusedIndex + direction;
 
                         if (!!this.dropdownEl.children[newFocusedIndex] && this.dropdownEl.children[newFocusedIndex].tabIndex !== -1) {
-                            foundNewIndex = true;
+                            foundAddIndex = true;
                             break;
                         }
                     } while (newFocusedIndex < this.dropdownEl.children.length && newFocusedIndex >= 0);
 
-                    if (foundNewIndex) {
+                    if (foundAddIndex) {
                         this.focusedIndex = newFocusedIndex;
                         this._focusFocusedItem();
                     }

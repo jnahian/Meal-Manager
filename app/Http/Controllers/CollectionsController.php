@@ -49,7 +49,7 @@ class CollectionsController extends Controller
      */
     public function create()
     {
-        $title = "New Collection";
+        $title = "Add Collection";
         $users = User::getDropdown();
         return view( 'collection.create', compact( 'title', 'users' ) );
     }

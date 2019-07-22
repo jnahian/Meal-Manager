@@ -50,7 +50,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        $title = "New Expense";
+        $title = "Add Expense";
         $users = User::getDropdown();
         return view( 'expense.create', compact( 'title', 'users' ) );
     }
