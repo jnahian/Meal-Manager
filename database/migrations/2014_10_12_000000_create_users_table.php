@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string( 'password' );
             $table->rememberToken();
             $table->timestamps();
+            $table->tinyInteger( 'status' )->default( 9 )->comment( 'Active=1, Inactive=9' );
         } );
     }
     

@@ -6,7 +6,8 @@
         <li class="collection-item"><a href="{{ route('expense.create') }}"><i class="material-icons">add</i>New Expense</a></li>
         <li class="collection-item"><a href="{{ route('expense.index') }}"><i class="material-icons">money_off</i> Expense List </a></li>
         {{--<li class="collection-item"><a href="{{ route('report.index') }}"><i class="material-icons">assignment</i> রিপোর্টস</a></li>--}}
-        <li class="collection-item"><a href="{{ route('report.daily') }}"><i class="material-icons">assignment</i> প্রতিদিনের আয় / ব্যায় রিপোর্ট</a></li>
-        <li class="collection-item"><a href="{{ route('report.monthly') }}"><i class="material-icons">assignment</i> মাসিক আয় / ব্যায় রিপোর্ট</a></li>
+        {{--        <li class="collection-item"><a href="{{ route('report.daily') }}"><i class="material-icons">assignment</i> প্রতিদিনের আয় / ব্যায় রিপোর্ট</a></li>--}}
+        {{--        <li class="collection-item"><a href="{{ route('report.monthly') }}"><i class="material-icons">assignment</i> মাসিক আয় / ব্যায় রিপোর্ট</a></li>--}}
+        <li class="collection-item"><a href="{{ route('user.index') }}"><i class="material-icons">assignment_ind</i> Member List</a></li>
     </ul>
 </div>

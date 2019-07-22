@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::group( [ 'middleware' => 'auth' ], function () {
     Route::get( '/home', 'HomeController@index' )->name( 'home' );
+    Route::get( '/users', 'UsersController@index' )->name( 'user.index' );
+    Route::get( '/users/{user}', 'UsersController@show' )->name( 'user.show' );
+    Route::delete( '/users/{user}', 'UsersController@destroy' )->name( 'user.destroy' );
+    
     Route::resource( '/collection', 'CollectionsController' );
     Route::resource( '/expense', 'ExpenseController' );
     
