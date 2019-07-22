@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="input-field col m4 s12">
                             <input type="text" name="date" id="date" class="datepicker validate" readonly value="{{ $income->date ? $income->date->format("M d, Y") : "" }}">
-                            <label for="date">তারিখ <span class="red-text text-lighten-3">*</span></label>
+                            <label for="date">Date <span class="red-text text-lighten-3">*</span></label>
                         </div>
 
                         <div class="input-field col m4 s12">
@@ -32,21 +32,21 @@
                     <div class="row">
                         <div class="input-field col m12 s12">
                             <textarea id="remarks" name="remarks" class="materialize-textarea" data-length="200">{{ $income->remarks ? $income->remarks : "" }}</textarea>
-                            <label for="remarks">মন্তব্য</label>
+                            <label for="remarks">Remarks</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col m4 s12">
                             {!! Form::select('status', status(), $income->status); !!}
-                            <label for="status">স্টেটাস</label>
+                            <label for="status">Status</label>
                         </div>
                     </div>
                 </div>
                 <div class="card-action">
                     <button type="submit" class="btn green" onclick="submit_form(this, event)">
                         <i class="material-icons">save</i>
-                        আপডেট করুন
+                        Update Now
                     </button>
                 </div>
             </div>

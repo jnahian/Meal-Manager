@@ -88,8 +88,8 @@
                     <li><a href="{{ route('home') }}"><i class="material-icons">dashboard</i> Dashboard</a></li>
                     <li><a href="{{ route('income.create') }}"><i class="material-icons">add</i> নতুন আয় </a></li>
                     <li><a href="{{ route('income.index') }}"><i class="material-icons">attach_money</i> আয় সমূহ </a></li>
-                    <li><a href="{{ route('expense.create') }}"><i class="material-icons">add</i>নতুন ব্যয়</a></li>
-                    <li><a href="{{ route('expense.index') }}"><i class="material-icons">money_off</i> সকল ব্যায় </a></li>
+                    <li><a href="{{ route('expense.create') }}"><i class="material-icons">add</i>New Expanse</a></li>
+                    <li><a href="{{ route('expense.index') }}"><i class="material-icons">money_off</i> Expanse List </a></li>
                     <li><a href="{{ route('report.index') }}"><i class="material-icons">assignment</i> রিপোর্টস</a></li>
 
                     <li class="logout-wrap">

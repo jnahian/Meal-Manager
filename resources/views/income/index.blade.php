@@ -18,14 +18,14 @@
                         {!! Form::open(['route' => 'income.index', 'method' => 'GET']) !!}
                         <div class="input-field inline">
                             <input id="from" name="from" type="text" class="datepicker">
-                            <label for="from">তারিখ হইতে </label>
+                            <label for="from">Date From </label>
                         </div>
                         <div class="input-field inline">
                             <input id="to" type="text" name="to" class="datepicker">
-                            <label for="to">তারিখ পর্যন্ত </label>
+                            <label for="to">Date To </label>
                         </div>
                         <div class="input-field inline">
-                            <button type="submit" name="s" value="1" class="btn green"><span class="material-icons">search</span> অনুসন্ধান</button>
+                            <button type="submit" name="s" value="1" class="btn green"><span class="material-icons">search</span> Search</button>
                         </div>
                         {!! Form::close() !!}
                     </div>
@@ -33,10 +33,10 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>তারিখ</th>
+                            <th>Date</th>
                             <th>আয়ের উৎস</th>
                             <th>আয়ের পরিমাণ</th>
-                            <th class="center-align">স্টেটাস</th>
+                            <th class="center-align">Status</th>
                             <th class="center-align">সর্বশেষ আপডেট</th>
                             <th class="center-align">একশন্স</th>
                         </tr>
@@ -55,25 +55,25 @@
                                     <td class="center-align">{{ $income->updated_at->format('d M, Y h:i A') }}</td>
                                     <td class="center-align delete-wrap">
                                         <a href="{{ route('income.show', $income->uuid) }}" class="btn-floating btn-small waves-effect waves-light green tooltipped" data-position="top"
-                                           data-tooltip="বিস্তারিত দেখুন">
+                                           data-tooltip="Show Details">
                                             <span class="material-icons">remove_red_eye</span>
                                         </a>
 
                                         <a href="{{ route('income.edit', $income->uuid) }}" class="btn-floating btn-small waves-effect waves-light cyan tooltipped" data-position="top"
-                                           data-tooltip="পরিবর্তন করুন">
+                                           data-tooltip="Change">
                                             <span class="material-icons">edit</span>
                                         </a>
 
                                         <a href="javascript:" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="top"
-                                           data-tooltip="মুছে ফেলুন" onclick="jShowDelete(this)">
+                                           data-tooltip="Delete" onclick="jShowDelete(this)">
                                             <span class="material-icons">delete</span>
                                         </a>
 
                                         <div class="delete-form" onclick="jCancelDelete(this)">
                                             {!! Form::open(['route' => ['income.destroy', $income->uuid], 'method' => 'DELETE']) !!}
-                                            <h3>আপনি এটি মুছে ফেলতে চাচ্ছেন, আপনি কি নিশ্চিত?</h3>
-                                            <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> মুছে ফেলুন</button>
-                                            <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>বাদ দিন</button>
+                                            <h3>You want to delete this. Are you sure?</h3>
+                                            <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete</button>
+                                            <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
                                             {!! Form::close() !!}
                                         </div>
                                     </td>

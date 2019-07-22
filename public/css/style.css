@@ -274,7 +274,8 @@ nav ul li .material-icons {
 }
 
 .input-field.inline {
-    width: 120px;
+    min-width: 120px;
+    max-width: 150px;
 }
 
 .pagination li > a {

@@ -14,7 +14,7 @@
                     <table class="striped">
                         <tbody>
                         <tr>
-                            <th width="20%">তারিখ</th>
+                            <th width="20%">Date</th>
                             <th width="20px">:</th>
                             <td>{{ $income->date->format('d M, Y') }}</td>
                         </tr>
@@ -29,12 +29,12 @@
                             <td>{{ $income->amount }}</td>
                         </tr>
                         <tr>
-                            <th>মন্তব্য</th>
+                            <th>Remarks</th>
                             <th>:</th>
                             <td>{{ $income->remarks }}</td>
                         </tr>
                         <tr>
-                            <th>স্টেটাস</th>
+                            <th>Status</th>
                             <th>:</th>
                             <td>{!! status($income->status, TRUE) !!}</td>
                         </tr>
@@ -53,27 +53,27 @@
                 </div>
                 <div class="card-action right-align delete-wrap">
                     <a href="{{ route('income.index') }}" class="btn-small waves-effect waves-light green tooltipped" data-position="top"
-                       data-tooltip="সকল আয় ">
+                       data-tooltip="Collection List ">
                         <span class="material-icons">list</span>
-                        <span class="hide-on-small-and-down">সকল আয়</span>
+                        <span class="hide-on-small-and-down">Collection List</span>
                     </a>
                     <a href="{{ route('income.edit', $income->uuid) }}" class="btn-small waves-effect waves-light cyan tooltipped" data-position="top"
-                       data-tooltip="পরিবর্তন করুন">
+                       data-tooltip="Change">
                         <span class="material-icons">edit</span>
-                        <span class="hide-on-small-and-down">পরিবর্তন করুন</span>
+                        <span class="hide-on-small-and-down">Change</span>
                     </a>
 
                     <a href="javascript:" class="btn-small waves-effect waves-light red tooltipped" data-position="top"
-                       data-tooltip="মুছে ফেলুন" onclick="jShowDelete(this)">
+                       data-tooltip="Delete" onclick="jShowDelete(this)">
                         <span class="material-icons">delete</span>
-                        <span class="hide-on-small-and-down">মুছে ফেলুন</span>
+                        <span class="hide-on-small-and-down">Delete</span>
                     </a>
 
                     <div class="delete-form" onclick="jCancelDelete(this)">
                         {!! Form::open(['route' => ['income.destroy', $income->uuid], 'method' => 'DELETE']) !!}
-                        <h3>আপনি এটি মুছে ফেলতে চাচ্ছেন, আপনি কি নিশ্চিত?</h3>
-                        <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> মুছে ফেলুন</button>
-                        <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>বাদ দিন</button>
+                        <h3>You want to delete this. Are you sure?</h3>
+                        <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete</button>
+                        <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
                         {!! Form::close() !!}
                     </div>
                 </div>

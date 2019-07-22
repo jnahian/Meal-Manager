@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="input-field inline">
-                            <button type="submit" name="s" value="1" class="btn green"><span class="material-icons">search</span>অনুসন্ধান</button>
+                            <button type="submit" name="s" value="1" class="btn green"><span class="material-icons">search</span>Search</button>
                         </div>
                         {!! Form::close() !!}
                     </div>
@@ -40,7 +40,7 @@
                                 <thead>
                                 <tr class="green lighten-3">
                                     <th>#</th>
-                                    <th width="12%">তারিখ</th>
+                                    <th width="12%">Date</th>
                                     <th>আয়ের উৎস/ব্যয়ের খাত</th>
                                     <th class="center-align" width="8%">আয়/ব্যায়</th>
                                     <th width="15%" class="right-align">আয়ের পরিমাণ</th>

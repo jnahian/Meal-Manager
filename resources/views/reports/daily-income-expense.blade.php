@@ -21,14 +21,14 @@
                         {!! Form::open(['route' => 'report.daily', 'method' => 'GET']) !!}
                         <div class="input-field inline">
                             <input id="from" name="from" type="text" value="{{ old('from', date("M 01, Y")) }}" class="datepicker">
-                            <label for="from">তারিখ হইতে </label>
+                            <label for="from">Date From </label>
                         </div>
                         <div class="input-field inline">
                             <input id="to" type="text" name="to" value="{{ old('from', date("M t, Y")) }}" class="datepicker">
-                            <label for="to">তারিখ পর্যন্ত </label>
+                            <label for="to">Date To </label>
                         </div>
                         <div class="input-field inline">
-                            <button type="submit" name="s" value="1" class="btn green"><span class="material-icons">search</span>অনুসন্ধান</button>
+                            <button type="submit" name="s" value="1" class="btn green"><span class="material-icons">search</span>Search</button>
                         </div>
                         {!! Form::close() !!}
                     </div>
@@ -43,7 +43,7 @@
                                     </tr>
                                     <tr>
                                         <th>#</th>
-                                        <th>তারিখ</th>
+                                        <th>Date</th>
                                         <th>আয়ের উৎস</th>
                                         <th width="25%">আয়ের পরিমাণ</th>
                                     </tr>
@@ -83,7 +83,7 @@
                                     </tr>
                                     <tr>
                                         <th>#</th>
-                                        <th>তারিখ</th>
+                                        <th>Date</th>
                                         <th>ব্যয়ের খাত</th>
                                         <th width="25%">ব্যায়ের পরিমাণ</th>
                                     </tr>

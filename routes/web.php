@@ -19,9 +19,10 @@ Auth::routes();
 
 Route::group( [ 'middleware' => 'auth' ], function () {
     Route::get( '/home', 'HomeController@index' )->name( 'home' );
+    Route::resource( '/collection', 'CollectionsController' );
     Route::resource( '/income', 'IncomeController' );
     Route::resource( '/expense', 'ExpenseController' );
-
+    
     Route::group( [ 'prefix' => 'report', 'as' => 'report.' ], function () {
         Route::get( '/', 'ReportsController@index' )->name( 'index' );
         Route::get( '/daily', 'ReportsController@daily_income_expense' )->name( 'daily' );

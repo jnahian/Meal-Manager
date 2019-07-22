@@ -1,10 +1,13 @@
 <?php
 
+use Carbon\Carbon;
+use MirazMac\BanglaString\BanglaString;
+
 if ( !function_exists( 'bijoyToAvro' ) ) {
     function bijoyToAvro( $text = NULL )
     {
         if ( $text ) {
-            $converter = new \MirazMac\BanglaString\BanglaString( $text );
+            $converter = new BanglaString( $text );
 
             return $converter->toAvro();
         }
@@ -17,7 +20,7 @@ if ( !function_exists( 'avroToBijoy' ) ) {
     function avroToBijoy( $text = NULL )
     {
         if ( $text ) {
-            $converter = new \MirazMac\BanglaString\BanglaString( $text );
+            $converter = new BanglaString( $text );
 
             return $converter->toBijoy();
         }
@@ -30,8 +33,8 @@ if ( !function_exists( 'status' ) ) {
     function status( $val = NULL, $badge = FALSE )
     {
         $status = [
-            1 => "সক্রিয়",
-            9 => "নিষ্ক্রিয়"
+            1 => "Active",
+            9 => "Inactive"
         ];
 
         if ( $val ) {
@@ -89,7 +92,7 @@ if ( !function_exists( 'month_list' ) ) {
         $months = [ '' => "নির্বাচন করুন" ];
 
         for ( $i = 1; $i <= 12; $i++ ) {
-            $name = \Carbon\Carbon::createFromFormat( 'm', $i )->format( "F" );
+            $name       = Carbon::createFromFormat( 'm', $i )->format( "F" );
             $months[$i] = $name;
         }
 
