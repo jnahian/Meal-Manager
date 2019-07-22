@@ -7,13 +7,13 @@
                 @csrf
                 <div class="card">
                     <div class="card-content">
-                        <div class="card-title">পাসওয়ার্ড রিসেট করুন</div>
+                        <div class="card-title">Reset Password</div>
 
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="input-field">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">ইমেইল এড্রেস</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="input-field">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">পাসওয়ার্ড </label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password </label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="input-field">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">পাসওয়ার্ড নিশ্চিত করুন</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -52,7 +52,7 @@
                     <div class="card-action center-align">
                         <button type="submit" class="btn orange">
                             <i class="material-icons">vpn_key</i>
-                            পাসওয়ার্ড রিসেট করুন
+                            Reset Password
                         </button>
                     </div>
                 </div>

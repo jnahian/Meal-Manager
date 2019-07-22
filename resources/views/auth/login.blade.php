@@ -7,7 +7,7 @@
                 @csrf
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">সাইন ইন</span>
+                        <span class="card-title">Sign In</span>
 
 
                         <div class="row">
@@ -19,7 +19,7 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                                <label for="email">ইমেইল এড্রেস</label>
+                                <label for="email">Email</label>
                             </div>
                             <div class="input-field col m6 s12">
                                 <input id="password" type="password" class="validate {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -29,26 +29,26 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                                <label for="last_name">পাসওয়ার্ড</label>
+                                <label for="last_name">Password</label>
                             </div>
                         </div>
 
                         <p>
                             <label>
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                <span>আমাকে মনে রেখো</span>
+                                <span>Remember Me</span>
                             </label>
                         </p>
                     </div>
                     <div class="card-action text-right">
                         <button type="submit" class="btn green">
                             <i class="material-icons">lock_open</i>
-                            সাইন ইন
+                            Sign In
                         </button>
 
                         @if (Route::has('password.request'))
                             <a class="btn orange right" href="{{ route('password.request') }}">
-                                পাসওয়ার্ড ভুলে গেছেন?
+                                Forot Password?
                             </a>
                         @endif
                     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Reports;
+use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
 {
@@ -19,11 +20,11 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function index()
     {
-        $title = "ড্যাশবোর্ড";
+        $title = "Dashboard";
     
         $reports = Reports::select( 'month' )
                           ->selectRaw( "if(isnull(sum(income)) , 0, sum(income)) income" )

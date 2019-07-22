@@ -8,7 +8,7 @@
                 @csrf
                 <div class="card">
                     <div class="card-content">
-                        <div class="card-title">পাসওয়ার্ড রিসেট করুন</div>
+                        <div class="card-title">Reset Password</div>
 
 
                         @if (session('status'))
@@ -26,7 +26,7 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                                <label for="email">ইমেইল এড্রেস</label>
+                                <label for="email">Email</label>
                             </div>
                         </div>
 
@@ -34,7 +34,7 @@
                     <div class="card-action center-align">
                         <button type="submit" class="btn orange">
                             <i class="material-icons">vpn_key</i>
-                            পাসওয়ার্ড রিসেট লিঙ্ক পাঠান
+                            Send Password Reset Link
                         </button>
                     </div>
                 </div>

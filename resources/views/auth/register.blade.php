@@ -7,7 +7,7 @@
                 @csrf
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">রেজিস্ট্রেশন </span>
+                        <span class="card-title">Registration </span>
 
                         <div class="row">
                             <div class="input-field col m6 s12">
@@ -18,7 +18,7 @@
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
-                                <label for="name">সম্পূর্ণ নাম</label>
+                                <label for="name">Full Name</label>
                             </div>
 
                             <div class="input-field col m6 s12">
@@ -29,7 +29,22 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                                <label for="email">ইমেইল এড্রেস</label>
+                                <label for="email">Email</label>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="input-field col m6 s12">
+                                <input id="mobile" type="text" class="validate {{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" value="{{ old('mobile') }}" required>
+
+                                @if ($errors->has('mobile'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('mobile') }}</strong>
+                                    </span>
+                                @endif
+                                <label for="mobile">Mobile</label>
                             </div>
 
                         </div>
@@ -43,7 +58,7 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                                <label for="last_name">পাসওয়ার্ড </label>
+                                <label for="last_name">Password </label>
                             </div>
 
                             <div class="input-field col m6 s12">
@@ -54,14 +69,14 @@
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
                                 @endif
-                                <label for="password-confirm">পাসওয়ার্ড নিশ্চিত করুন</label>
+                                <label for="password-confirm">Confirm Password</label>
                             </div>
                         </div>
                     </div>
                     <div class="card-action">
                         <button type="submit" class="btn green">
                             <i class="material-icons">person_add</i>
-                            রেজিস্ট্রেশন
+                            Registration
                         </button>
                     </div>
                 </div>

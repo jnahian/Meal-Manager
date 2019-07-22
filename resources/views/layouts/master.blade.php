@@ -30,12 +30,12 @@
                 @guest
                     <li>
                         <a href="{{ route('login') }}">
-                            <i class="material-icons">lock_open</i>সাইন ইন</a>
+                            <i class="material-icons">lock_open</i>Sign In</a>
                     </li>
                     @if (Route::has('register'))
                         <li>
                             <a href="{{ route('register') }}">
-                                <i class="material-icons">person_add</i>রেজিস্ট্রেশন </a>
+                                <i class="material-icons">person_add</i>Registration </a>
                         </li>
                     @endif
                 @else
@@ -53,7 +53,7 @@
                     <li class="logout-wrap">
                         <a href="javascript:" onclick="jLogoutConfirm(this)"> {{-- event.preventDefault(); document.getElementById('logout-form').submit(); --}}
                             <i class="material-icons">power_settings_new</i>
-                            সাইন আউট
+                            Sign Out
                         </a>
                     </li>
                 @endguest
@@ -61,7 +61,7 @@
 
             <ul id="nav-mobile" class="sidenav">
                 <li class="disabled center-align cyan">
-                    <a href="javascript:;" class="white-text">
+                    <a href="javascript:" class="white-text">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </li>
@@ -69,12 +69,12 @@
                 @guest
                     <li>
                         <a href="{{ route('login') }}">
-                            <i class="material-icons">lock_open</i>সাইন ইন</a>
+                            <i class="material-icons">lock_open</i>Sign In</a>
                     </li>
                     @if (Route::has('register'))
                         <li>
                             <a href="{{ route('register') }}">
-                                <i class="material-icons">person_add</i>রেজিস্ট্রেশন </a>
+                                <i class="material-icons">person_add</i>Registration </a>
                         </li>
                     @endif
                 @else
@@ -85,7 +85,7 @@
                         </a>
                     </li>
 
-                    <li><a href="{{ route('home') }}"><i class="material-icons">dashboard</i> ড্যাশবোর্ড</a></li>
+                    <li><a href="{{ route('home') }}"><i class="material-icons">dashboard</i> Dashboard</a></li>
                     <li><a href="{{ route('income.create') }}"><i class="material-icons">add</i> নতুন আয় </a></li>
                     <li><a href="{{ route('income.index') }}"><i class="material-icons">attach_money</i> আয় সমূহ </a></li>
                     <li><a href="{{ route('expense.create') }}"><i class="material-icons">add</i>নতুন ব্যয়</a></li>
@@ -95,7 +95,7 @@
                     <li class="logout-wrap">
                         <a href="javascript:" onclick="jLogoutConfirm(this)"> {{-- event.preventDefault(); document.getElementById('logout-form').submit(); --}}
                             <i class="material-icons">power_settings_new</i>
-                            সাইন আউট
+                            Sign Out
                         </a>
                     </li>
                 @endguest
@@ -106,9 +106,9 @@
         <div class="confirm-logout" onclick="jLogoutCancel(this)">
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
-                <h3>আপনি সাইন আউট করতে চাচ্ছেন, আপনি কি নিশ্চিত?</h3>
-                <button type="submit" class="btn orange darken-3"><span class="material-icons">power_settings_new</span> সাইন আউট</button>
-                <button type="button" class="btn grey" onclick="jLogoutCancel(this)"><span class="material-icons">close</span> বাদ দিন</button>
+                <h3>Are you sure? You want to sign out.</h3>
+                <button type="submit" class="btn orange darken-3"><span class="material-icons">power_settings_new</span> Sign Out</button>
+                <button type="button" class="btn grey" onclick="jLogoutCancel(this)"><span class="material-icons">close</span> Cancel</button>
             </form>
         </div>
     </nav>
@@ -124,7 +124,7 @@
 <footer class="page-footer grey lighten-3">
     <div class="footer-copyright">
         <div class="container center-align black-text">
-            {{ bijoyToAvro(date('Y')) }} &copy; <a class="blue-text lighten-2" href="http://jnahian.com">নাহিয়ান</a>
+            {{ date('Y') }} &copy; <a class="blue-text lighten-2" href="http://jnahian.com">Nahian</a>
         </div>
     </div>
 </footer>
