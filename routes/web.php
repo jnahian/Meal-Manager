@@ -30,6 +30,6 @@ Route::group( [ 'middleware' => 'auth' ], function () {
     Route::group( [ 'prefix' => 'report', 'as' => 'report.' ], function () {
         Route::get( '/', 'ReportsController@index' )->name( 'index' );
         Route::get( '/daily', 'ReportsController@daily_income_expense' )->name( 'daily' );
-        Route::get( '/monthly', 'ReportsController@monthly_income_expense' )->name( 'monthly' );
+        Route::get( '/monthly-meal', 'ReportsController@monthly_meal_report' )->name( 'monthly-meal' );
     } );
 } );

@@ -44,6 +44,17 @@ class ReportsController extends Controller
         return view( 'reports.monthly-income-expense', compact( 'title', 'reports' ) );
     }
     
+    public function monthly_meal_report( Request $request )
+    {
+        $title = "Monthly Meal Report";
+        
+        $reports = Reports::getMonthlyMealReaport( $request );
+        
+        dd( $reports );
+        
+        return view( 'reports.monthly-meal-report', compact( 'title', 'reports' ) );
+    }
+    
     public function getDailyIncomeReport( Request $request )
     {
     
