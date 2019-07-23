@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row justify-content-center">
-        <div class="col m8 offset-m2 s12">
+        <div class="col m6 offset-m3 s12">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="card">
@@ -11,17 +11,19 @@
 
 
                         <div class="row">
-                            <div class="input-field col m6 s12">
-                                <input id="email" type="email" class="validate {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                            <div class="input-field">
+                                <input id="mobile" type="text" class="validate {{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" value="{{ old('mobile') }}" required autofocus>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('mobile'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('mobile') }}</strong>
                                     </span>
                                 @endif
-                                <label for="email">Email</label>
+                                <label for="mobile">Mobile</label>
                             </div>
-                            <div class="input-field col m6 s12">
+                        </div>
+                        <div class="row">
+                            <div class="input-field">
                                 <input id="password" type="password" class="validate {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                 @if ($errors->has('password'))
@@ -47,7 +49,7 @@
                         </button>
 
                         @if (Route::has('password.request'))
-                            <a class="btn orange right" href="{{ route('password.request') }}">
+                            <a class="btn orange right btn-small" href="{{ route('password.request') }}">
                                 Forot Password?
                             </a>
                         @endif

@@ -19,7 +19,7 @@
     <div class="progress">
         <div class="determinate" style="width: 0"></div>
     </div>
-    <nav class="cyan lighten-1" role="navigation">
+    <nav class="blue-grey" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="{{ url('/') }}" class="brand-logo">
                 <img src="{{ asset("svg/expensive.svg") }}" class="hide-on-small-and-down" alt="{{ config('app.name', 'Laravel') }}">
@@ -114,7 +114,7 @@
         </div>
     </nav>
 </div>
-<div class="section cyan lighten-5" id="index-banner">
+<div class="section grey lighten-5" id="index-banner">
     <div class="container">
 
         @yield('content')
@@ -122,9 +122,9 @@
     </div>
 </div>
 
-<footer class="page-footer grey lighten-3">
+<footer class="page-footer blue-grey darken-4">
     <div class="footer-copyright">
-        <div class="container center-align black-text">
+        <div class="container center-align">
             {{ date('Y') }} &copy; <a class="blue-text lighten-2" href="http://jnahian.com">Nahian</a>
         </div>
     </div>
