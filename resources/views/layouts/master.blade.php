@@ -6,8 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>{{ isset($title) ? "$title :: " : ""  }} {{ config('app.name', 'Laravel') }}</title>
-    <link rel="icon" href="{{ asset("favicon.png") }}">
-    <link rel="apple-touch-icon" href="{{ asset("favicon.png") }}">
+    <link rel="icon" href="{{ asset("waiter.png") }}">
+    <link rel="apple-touch-icon" href="{{ asset("waiter.png") }}">
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -22,7 +22,7 @@
     <nav class="blue-grey" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="{{ url('/') }}" class="brand-logo">
-                <img src="{{ asset("svg/expensive.svg") }}" class="hide-on-small-and-down" alt="{{ config('app.name', 'Laravel') }}">
+                <img src="{{ asset("svg/waiter.svg") }}" class="hide-on-small-and-down" alt="{{ config('app.name', 'Laravel') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
 
