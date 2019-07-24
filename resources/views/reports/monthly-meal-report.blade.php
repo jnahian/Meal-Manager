@@ -20,11 +20,11 @@
                         {!! Form::open(['route' => 'report.monthly-meal', 'method' => 'GET']) !!}
                         <div class="input-field inline">
                             {!! Form::select('year', year_list(), old('year', date('Y'))) !!}
-                            <label for="from">সাল </label>
+                            <label for="from">Year </label>
                         </div>
                         <div class="input-field inline">
                             {!! Form::select('month', month_list(), old('month', date('n'))) !!}
-                            <label for="from">মাস </label>
+                            <label for="from">Month </label>
                         </div>
 
                         <div class="input-field inline">
@@ -34,27 +34,28 @@
                     </div>
 
                     @if($reports)
-                        <div class="">
+                        <div id="printable">
                             @if($reports)
 
                                 <table class="striped responsive-table">
                                     <thead>
                                     <tr>
-                                        <th>Date/Name</th>
-                                        @foreach($reports['user'] as $user)
+                                        <th width="20%">Date &downarrow; / Name &rightarrow;</th>
+                                        @foreach($reports['users'] as $user)
                                             <th class="center-align">
-                                                {{ $user }}
+                                                {{ $user['name'] }}
                                             </th>
                                         @endforeach
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($reports['report'] as $report)
+                                    @foreach($reports['meals'] as $date => $report)
 
                                         <tr>
-                                            <td>{{ date('d M, Y', strtotime($report[0]['date']))  }}</td>
-                                            <td class="center-align">{{ $total[] = $report[0]['total']}}</td>
-                                            <td class="center-align">{{ $total[] = $report[1]['total']}}</td>
+                                            <td>{{ $date }}</td>
+                                            @foreach($report as $rep)
+                                                <td class="center-align">{{ number_format($rep['total']) }} ({{ number_format($rep['guest']) }})</td>
+                                            @endforeach
                                         </tr>
 
                                     @endforeach
@@ -63,9 +64,9 @@
                                     <tr>
                                         <th class="right-align">Total =</th>
 
-                                        @foreach($reports['user'] as $i => $user)
+                                        @foreach($reports['totals'] as $i => $total)
                                             <th class="center-align">
-                                                {{ array_sum(array_column($reports['report'][$i], 'total')) }}
+                                                {{ number_format($total['total_total']) }} ({{ number_format($total['total_guest']) }})
                                             </th>
                                         @endforeach
                                     </tr>
@@ -78,7 +79,7 @@
                     @endif
                 </div>
                 <div class="card-action center-align">
-
+                    <a href="javascript:" onclick="PrintMe('printable')" class="btn-small orange hidden-print"><i class="material-icons left">print</i>Print</a>
                 </div>
             </div>
         </div>

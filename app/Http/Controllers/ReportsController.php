@@ -50,8 +50,6 @@ class ReportsController extends Controller
         
         $reports = Reports::getMonthlyMealReaport( $request );
         
-        dd( $reports );
-        
         return view( 'reports.monthly-meal-report', compact( 'title', 'reports' ) );
     }
     

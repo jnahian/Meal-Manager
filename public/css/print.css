@@ -1,0 +1,19 @@
+@media print {
+    .hidden-print, .hidden-print * {
+        display: none !important;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table tr th, table tr td {
+        border: 1px solid #333;
+        padding: 2px 4px;
+    }
+
+    .center-align {
+        text-align: center;
+    }
+}

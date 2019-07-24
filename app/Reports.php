@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Scopes\LoggedUser;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -19,31 +20,74 @@ class Reports extends Model
     
         static::addGlobalScope( new LoggedUser() );
     }
+
+//    public static function getMonthlyMealReaport( $request )
+//    {
+//        if ( $request->s ) {
+//            $reports = new Meal();
+//            $reports->select( DB::raw( 'user_id', 'date', 'sum(total)' ) );
+//            if ( $request->year ) {
+//                $reports = $reports->where( DB::raw( 'year(date)' ), $request->year );
+//            }
+//            if ( $request->month ) {
+//                $reports = $reports->where( DB::raw( 'month(date)' ), $request->month );
+//            }
+//            $reports = $reports->groupBy( "date", 'user_id' )->orderBy( "date" )->get();
+//
+//            $data = $repData = [];
+//
+//            $users = $reports->pluck( 'user_id', 'user_id' )->toArray();
+//
+//            foreach ( $reports as $report ) {
+//                foreach ( $users as $user ) {
+//                    if ( array_key_exists( $user, $reports ) ) {
+//                        $repData[$report->date->format( 'd-M-Y' )][$report->user_id] = $report->toArray();
+//                    } else {
+//                        $repData[$report->date->format( 'd-M-Y' )][$user] = [];
+//                    }
+//                }
+//
+//                $data['user'][$report->user_id] = $report->user->name;
+//                $data['reports']                = $repData;
+//            }
+//
+//            return $data;
+//        }
+//
+//        return FALSE;
+//    }
     
     public static function getMonthlyMealReaport( $request )
     {
         if ( $request->s ) {
-            $reports = new Meal();
-            $reports->select( DB::raw( 'user_id', 'date', 'sum(total)' ) );
-            if ( $request->year ) {
-                $reports = $reports->where( DB::raw( 'year(date)' ), $request->year );
-            }
-            if ( $request->month ) {
-                $reports = $reports->where( DB::raw( 'month(date)' ), $request->month );
-            }
-            $reports = $reports->groupBy( "date", 'user_id' )->orderBy( "date" )->get();
+            $users = User::all();
+    
+            $firstDayofMonth = "{$request->year}-{$request->month}-01";
+    
+            $carbon = Carbon::parse();
+            $days   = $carbon->daysInMonth;
+    
+            $lastDayofMonth = "{$request->year}-{$request->month}-$days";
             
             $data = [];
+    
+            foreach ( $users as $user ) {
+        
+                $data['users'][$user->id] = $user->toArray();
+        
+                for ( $i = 1; $i <= $days; $i++ ) {
+                    $carbon = Carbon::parse( "{$request->year}-{$request->month}-$i" );
+                    $date   = $carbon->toDateString();
             
+                    $meals = $user->meals()->where( 'date', $date )->first();
             
-            foreach ( $reports as $report ) {
-                $data[$report->user_id]['user']      = $report->user->name;
-                $data[$report->user_id]['reports'][] = $report->toArray();
-
-//                $report->user_id
-
-//                $data['user'][$report->user_id]     = $report->user->name;
-//                $data[]['report'][$report->user_id] = $report->toArray();
+                    $data['meals'][$carbon->format( 'd-M-Y' )][$user->id] = $meals ? $meals->toArray() : [ 'meal' => 0, 'guest' => 0, 'total' => 0 ];
+                }
+        
+                $data['totals'][$user->id] = $user->meals()
+                    ->select( DB::raw( 'sum(meal) total_meal ,sum(guest) total_guest, sum(total) total_total' ) )
+                    ->whereBetween( 'date', [ $firstDayofMonth, $lastDayofMonth ] )
+                    ->first()->toArray();
             }
             
             return $data;

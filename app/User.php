@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return self::orderBy( 'name' )->get( [ 'name', 'id' ] )->pluck( 'name', 'id' )->toArray();
     }
+    
+    public function meals()
+    {
+        return $this->hasMany( Meal::class );
+    }
 }

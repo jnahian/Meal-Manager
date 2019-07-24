@@ -473,6 +473,7 @@ function completeSwal(t, e) {
  * @param type
  * @param msg
  */
+
 /*
  jNotify = function (type = '', msg = '', hide = true) {
  if (type != '' && msg != '') {
@@ -514,3 +515,10 @@ function completeSwal(t, e) {
  }
  };*/
 
+function PrintMe(divName) {
+    var printContents = document.getElementById(divName).innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+}

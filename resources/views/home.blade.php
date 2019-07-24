@@ -11,68 +11,70 @@
                     <div class="card-title">
                         Monthy Summery Report of <i>{{ date('F Y') }}</i>
 
-                        {{--                        <a href="javascript:;" onclick="window.print()" class="waves-effect waves-light btn-small orange right hidden-print"><i class="material-icons left">print</i>Print</a>--}}
+                        <a href="javascript:" onclick="PrintMe('printable')" class="right btn-small orange hidden-print"><i class="material-icons left">print</i>Print</a>
                     </div>
 
-                    <table class="responsive-table striped">
-                        <thead>
-                        <tr>
-                            <th>Member</th>
-                            <th>Deposit Amount</th>
-                            <th>Meal</th>
-                            <th>Meal Rate</th>
-                            <th>Meal Expense</th>
-                            <th>Other Expense</th>
-                            <th>Total Expense</th>
-                            <th>DUE/GIVE</th>
-                        </tr>
-                        </thead>
+                    <div id="printable">
+                        <table class="responsive-table striped">
+                            <thead>
+                            <tr>
+                                <th>Member</th>
+                                <th>Deposit Amount</th>
+                                <th>Meal</th>
+                                <th>Meal Rate</th>
+                                <th>Meal Expense</th>
+                                <th>Other Expense</th>
+                                <th>Total Expense</th>
+                                <th>DUE/GIVE</th>
+                            </tr>
+                            </thead>
 
-                        @php
-                            $total_collection = 0;
-                            $total_total_cost = 0;
-                            $total_amount_left = 0;
-                        @endphp
-                        @if($msr)
-                            <tbody>
-                            @foreach($msr as $rep)
+                            @php
+                                $total_collection = 0;
+                                $total_total_cost = 0;
+                                $total_amount_left = 0;
+                            @endphp
+                            @if($msr)
+                                <tbody>
+                                @foreach($msr as $rep)
 
-                                @php
-                                    $total_collection += $rep->collection;
-                                    $total_total_cost += $rep->total_cost;
-                                    $total_amount_left += $rep->amount_left;
-                                @endphp
+                                    @php
+                                        $total_collection += $rep->collection;
+                                        $total_total_cost += $rep->total_cost;
+                                        $total_amount_left += $rep->amount_left;
+                                    @endphp
 
+                                    <tr>
+                                        <td>{{ $rep->user->name }}</td>
+                                        <td class="center-align">{{ number_format($rep->collection) }}</td>
+                                        <td class="center-align">{{ $rep->meal }}</td>
+                                        <td class="center-align">{{ number_format($rep->meal_rate, 2) }}</td>
+                                        <td class="center-align">{{ number_format($rep->meal_cost, 2) }}</td>
+                                        <td class="center-align">{{ number_format($rep->others_cost, 2) }}</td>
+                                        <td class="center-align">{{ number_format($rep->total_cost, 2) }}</td>
+                                        <td class="center-align">{{ number_format($rep->amount_left, 2) }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+
+                                <tfoot>
                                 <tr>
-                                    <td>{{ $rep->user->name }}</td>
-                                    <td class="center-align">{{ number_format($rep->collection) }}</td>
-                                    <td class="center-align">{{ $rep->meal }}</td>
-                                    <td class="center-align">{{ number_format($rep->meal_rate, 2) }}</td>
-                                    <td class="center-align">{{ number_format($rep->meal_cost, 2) }}</td>
-                                    <td class="center-align">{{ number_format($rep->others_cost, 2) }}</td>
-                                    <td class="center-align">{{ number_format($rep->total_cost, 2) }}</td>
-                                    <td class="center-align">{{ number_format($rep->amount_left, 2) }}</td>
+                                    <th class="right-align">Total =</th>
+                                    <th class="center-align">{{ number_format($total_collection, 2) }}</th>
+                                    <th colspan="4"></th>
+                                    <th class="center-align">{{ number_format($total_total_cost, 2) }}</th>
+                                    <th class="center-align">{{ number_format($total_amount_left, 2) }}</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-
-                            <tfoot>
-                            <tr>
-                                <th class="right-align">Total =</th>
-                                <th class="center-align">{{ number_format($total_collection, 2) }}</th>
-                                <th colspan="4"></th>
-                                <th class="center-align">{{ number_format($total_total_cost, 2) }}</th>
-                                <th class="center-align">{{ number_format($total_amount_left, 2) }}</th>
-                            </tr>
-                            </tfoot>
-                        @else
-                            <tfoot>
-                            <tr>
-                                <td colspan="10">No data found..</td>
-                            </tr>
-                            </tfoot>
-                        @endif
-                    </table>
+                                </tfoot>
+                            @else
+                                <tfoot>
+                                <tr>
+                                    <td colspan="10">No data found..</td>
+                                </tr>
+                                </tfoot>
+                            @endif
+                        </table>
+                    </div>
 
                 </div>
             </div>
