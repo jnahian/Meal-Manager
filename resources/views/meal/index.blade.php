@@ -49,7 +49,9 @@
                             <th class="center-align">Meal</th>
                             <th class="center-align">Guest</th>
                             <th class="center-align">Total</th>
-                            <th class="center-align">Action</th>
+                            @if(hasPermission())
+                                <th class="center-align">Action</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -62,25 +64,27 @@
                                     <td class="center-align">{{ $meal->meal }}</td>
                                     <td class="center-align">{{ $meal->guest }}</td>
                                     <td class="center-align">{{ $meal->total }}</td>
-                                    <td class="center-align delete-wrap">
-                                        <a href="{{ route('meal.edit', $meal->id) }}" class="btn-floating btn-small waves-effect waves-light cyan tooltipped" data-position="top"
-                                           data-tooltip="Change">
-                                            <span class="material-icons">edit</span>
-                                        </a>
+                                    @if(hasPermission())
+                                        <td class="center-align delete-wrap">
+                                            <a href="{{ route('meal.edit', $meal->id) }}" class="btn-floating btn-small waves-effect waves-light cyan tooltipped" data-position="top"
+                                               data-tooltip="Change">
+                                                <span class="material-icons">edit</span>
+                                            </a>
 
-                                        <a href="javascript:" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="top"
-                                           data-tooltip="Delete" onclick="jShowDelete(this)">
-                                            <span class="material-icons">delete</span>
-                                        </a>
+                                            <a href="javascript:" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="top"
+                                               data-tooltip="Delete" onclick="jShowDelete(this)">
+                                                <span class="material-icons">delete</span>
+                                            </a>
 
-                                        <div class="delete-form" onclick="jCancelDelete(this)">
-                                            {!! Form::open(['route' => ['meal.destroy', $meal->id], 'method' => 'DELETE']) !!}
-                                            <h3>You want to delete this. Are you sure?</h3>
-                                            <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete</button>
-                                            <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
-                                            {!! Form::close() !!}
-                                        </div>
-                                    </td>
+                                            <div class="delete-form" onclick="jCancelDelete(this)">
+                                                {!! Form::open(['route' => ['meal.destroy', $meal->id], 'method' => 'DELETE']) !!}
+                                                <h3>You want to delete this. Are you sure?</h3>
+                                                <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete</button>
+                                                <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
+                                                {!! Form::close() !!}
+                                            </div>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         @else

@@ -10,6 +10,12 @@ use Illuminate\Http\Response;
 
 class UsersController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware( 'hasPerm', [ 'except' => [ 'index', 'show' ] ] );
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -155,6 +161,42 @@ class UsersController extends Controller
 //        }
 //        return response()->json( $response );
 //    }
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param User $user
+     * @return Response
+     */
+    public function permission( User $user )
+    {
+        $title = "User Permission";
+        $users = User::getDropdown();
+        return view( 'user.permission', compact( 'title', 'user', 'users' ) );
+    }
+    
+    public function update_permission( Request $request, User $user )
+    {
+        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
+        
+        $request->validate( [
+            'date_from' => 'required|date',
+            'date_to'   => 'required|date',
+        ] );
+        
+        try {
+            $user->perm_from = Carbon::parse( $request->date_from )->toDateString();
+            $user->perm_to   = Carbon::parse( $request->date_to )->toDateString();
+            $user->save();
+            
+            $response['success']  = TRUE;
+            $response['redirect'] = $request->previous;
+            $response['msg']      = "User Permission Changed Successfully!";
+        } catch ( Exception $exception ) {
+            $response['msg'] = $exception->getMessage();
+        }
+        return response()->json( $response );
+    }
     
     /**
      * Remove the specified resource from storage.

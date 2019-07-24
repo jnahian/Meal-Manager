@@ -69,24 +69,25 @@
                                            data-tooltip="Show Details">
                                             <span class="material-icons">remove_red_eye</span>
                                         </a>
+                                        @if(hasPermission())
+                                            <a href="{{ route('expense.edit', $expense->id) }}" class="btn-floating btn-small waves-effect waves-light cyan tooltipped" data-position="top"
+                                               data-tooltip="Change">
+                                                <span class="material-icons">edit</span>
+                                            </a>
 
-                                        <a href="{{ route('expense.edit', $expense->id) }}" class="btn-floating btn-small waves-effect waves-light cyan tooltipped" data-position="top"
-                                           data-tooltip="Change">
-                                            <span class="material-icons">edit</span>
-                                        </a>
+                                            <a href="javascript:" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="top"
+                                               data-tooltip="Delete" onclick="jShowDelete(this)">
+                                                <span class="material-icons">delete</span>
+                                            </a>
 
-                                        <a href="javascript:" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="top"
-                                           data-tooltip="Delete" onclick="jShowDelete(this)">
-                                            <span class="material-icons">delete</span>
-                                        </a>
-
-                                        <div class="delete-form" onclick="jCancelDelete(this)">
-                                            {!! Form::open(['route' => ['expense.destroy', $expense->id], 'method' => 'DELETE']) !!}
-                                            <h3>You want to delete this. Are you sure?</h3>
-                                            <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete</button>
-                                            <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
-                                            {!! Form::close() !!}
-                                        </div>
+                                            <div class="delete-form" onclick="jCancelDelete(this)">
+                                                {!! Form::open(['route' => ['expense.destroy', $expense->id], 'method' => 'DELETE']) !!}
+                                                <h3>You want to delete this. Are you sure?</h3>
+                                                <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete</button>
+                                                <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
+                                                {!! Form::close() !!}
+                                            </div>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Auth;
 
 class CollectionsController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware( 'hasPerm', [ 'except' => [ 'index', 'show' ] ] );
+    }
+    
     /**
      * Display a listing of the resource.
      *

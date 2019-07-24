@@ -21,6 +21,8 @@ Route::group( [ 'middleware' => 'auth' ], function () {
     Route::get( '/home', 'HomeController@index' )->name( 'home' );
     Route::get( '/users', 'UsersController@index' )->name( 'user.index' );
     Route::get( '/users/{user}', 'UsersController@show' )->name( 'user.show' );
+    Route::get( '/users/{user}/permission', 'UsersController@permission' )->name( 'user.permission' );
+    Route::put( '/users/{user}/permission', 'UsersController@update_permission' )->name( 'user.permission-update' );
     Route::delete( '/users/{user}', 'UsersController@destroy' )->name( 'user.destroy' );
     
     Route::resource( '/collection', 'CollectionsController' );
