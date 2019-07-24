@@ -8,14 +8,18 @@ use MirazMac\BanglaString\BanglaString;
 if ( !function_exists( 'hasPermission' ) ) {
     function hasPermission()
     {
-        $today = Carbon::now()->toDateString();
-        $user  = Auth::user();
-        
-        if ( $user->role == 1 ) return TRUE;
-        
-        $hasPerm = User::where( 'id', $user->id )->where( 'perm_from', '<=', $today )->where( 'perm_to', '>=', $today )->first();
-        
-        if ( $hasPerm ) return TRUE;
+        if (Auth::check()) {
+
+            $today = Carbon::now()->toDateString();
+            $user  = Auth::user();
+            
+            if ( $user->role == 1 ) return TRUE;
+            
+            $hasPerm = User::where( 'id', $user->id )->where( 'perm_from', '<=', $today )->where( 'perm_to', '>=', $today )->first();
+            
+            if ( $hasPerm ) return TRUE;
+            
+        }
         
         return FALSE;
     }

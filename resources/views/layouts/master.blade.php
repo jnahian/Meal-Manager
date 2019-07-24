@@ -28,7 +28,7 @@
             </a>
 
             <ul class="right hide-on-med-and-down">
-                @if (Route::has('register') && hasPermission())
+                @if (Route::has('register') && (hasPermission() || \Auth::guest()))
                     <li>
                         <a href="{{ route('register') }}">
                             <i class="material-icons">person_add</i>Add Member </a>
