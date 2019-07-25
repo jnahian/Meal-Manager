@@ -19,7 +19,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Mobile</th>
+                            <th>Mobile No.</th>
                             <th>Email</th>
                             <th class="center-align">Status</th>
                             <th class="center-align">Action</th>

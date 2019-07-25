@@ -25,6 +25,11 @@ body {
     margin-right: 10px;
 }
 
+.app-logo {
+    max-width: 150px;
+    max-height: 150px;
+}
+
 .icon-block {
     padding: 0 15px;
 }
@@ -309,6 +314,14 @@ td, th {
     height: 400px;
 }
 
+.card {
+    /*min-height: 460px;*/
+    border: 1px solid #e0e0e0;
+    -webkit-box-shadow: 0px 0px 0px;
+    -moz-box-shadow: 0px 0px 0px;
+    box-shadow: 0px 0px 0px;
+}
+
 .card .card-title {
     font-size: 18px;
     color: #343443;
@@ -316,7 +329,7 @@ td, th {
 }
 
 .welcome {
-    margin-top: calc(50vh - 200px);
+    margin-top: calc(50vh - 250px);
 }
 
 .invalid-feedback {
@@ -362,11 +375,32 @@ td, th {
     }
 
     .welcome {
-        margin-top: 20vh;
+        /*margin-top: 20vh;*/
     }
 
     .card-action .btn-small > .material-icons {
         margin-right: 0;
+    }
+
+    .card .card-content {
+        overflow: hidden;
+    }
+
+    .side-nav-img {
+        width: 30px;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .sidenav li.disabled > a, #logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .brand-logo img {
+        width: 30px;
     }
 }
 

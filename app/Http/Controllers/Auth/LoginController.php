@@ -64,8 +64,18 @@ class LoginController extends Controller
     protected function validateLogin( Request $request )
     {
         $request->validate( [
-            'mobile'   => 'required|numeric|digits:11',
-            'password' => 'required|string',
+            $this->username() => 'required|numeric|digits:11',
+            'password'        => 'required|string',
         ] );
+    }
+    
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'mobile';
     }
 }

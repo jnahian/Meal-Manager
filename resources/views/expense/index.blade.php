@@ -12,7 +12,10 @@
                 <div class="card-content">
                     <div class="card-title">
                         {{ $title }}
-                        <a href="{{ route('expense.create') }}" class="btn-small green right"><i class="material-icons">add</i>Add Expense</a>
+
+                        @if(hasPermission())
+                            <a href="{{ route('expense.create') }}" class="btn-small green right"><i class="material-icons">add</i>Add Expense</a>
+                        @endif
                     </div>
                     <div class="row center-align">
                         {!! Form::open(['route' => 'expense.index', 'method' => 'GET']) !!}

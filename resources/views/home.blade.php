@@ -10,8 +10,6 @@
                 <div class="card-content">
                     <div class="card-title">
                         Monthy Summery Report of <i>{{ date('F Y') }}</i>
-
-                        <a href="javascript:" onclick="PrintMe('printable')" class="right btn-small orange hidden-print"><i class="material-icons left">print</i>Print</a>
                     </div>
 
                     <div id="printable">
@@ -76,6 +74,10 @@
                         </table>
                     </div>
 
+                </div>
+
+                <div class="card-action center-align">
+                    <a href="javascript:" onclick="PrintMe('printable')" class="btn-small orange hidden-print"><i class="material-icons left">print</i>Print</a>
                 </div>
             </div>
         </div>

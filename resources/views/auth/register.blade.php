@@ -7,7 +7,7 @@
                 @csrf
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Registration </span>
+                        <span class="card-title">Add Member </span>
 
                         <div class="row">
                             <div class="input-field col m6 s12">
@@ -44,7 +44,7 @@
                                         <strong>{{ $errors->first('mobile') }}</strong>
                                     </span>
                                 @endif
-                                <label for="mobile">Mobile</label>
+                                <label for="mobile">Mobile No.</label>
                             </div>
 
                         </div>
@@ -76,7 +76,7 @@
                     <div class="card-action">
                         <button type="submit" class="btn green">
                             <i class="material-icons">person_add</i>
-                            Registration
+                            Add Member
                         </button>
                     </div>
                 </div>

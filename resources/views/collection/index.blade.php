@@ -12,7 +12,10 @@
                 <div class="card-content">
                     <div class="card-title">
                         {{ $title }}
-                        <a href="{{ route('collection.create') }}" class="btn-small green right"><i class="material-icons">add</i> Add Collection </a>
+
+                        @if(hasPermission())
+                            <a href="{{ route('collection.create') }}" class="btn-small green right"><i class="material-icons">add</i> Add Collection </a>
+                        @endif
                     </div>
                     <div class="row center-align">
                         {!! Form::open(['route' => 'collection.index', 'method' => 'GET']) !!}

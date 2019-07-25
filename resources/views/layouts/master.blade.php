@@ -6,8 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>{{ isset($title) ? "$title :: " : ""  }} {{ config('app.name', 'Laravel') }}</title>
-    <link rel="icon" href="{{ asset("waiter.png") }}">
-    <link rel="apple-touch-icon" href="{{ asset("waiter.png") }}">
+    <link rel="icon" href="{{ asset("dinner.png") }}">
+    <link rel="apple-touch-icon" href="{{ asset("dinner.png") }}">
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,12 +23,12 @@
     <nav class="blue-grey" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="{{ url('/') }}" class="brand-logo">
-                <img src="{{ asset("svg/waiter.svg") }}" class="hide-on-small-and-down" alt="{{ config('app.name', 'Laravel') }}">
+                <img src="{{ asset("svg/dinner.svg") }}" class="" alt="{{ config('app.name', 'Laravel') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
 
             <ul class="right hide-on-med-and-down">
-                @if (Route::has('register') && (hasPermission() || \Auth::guest()))
+                @if (Route::has('register') && (hasPermission() || Auth::guest()))
                     <li>
                         <a href="{{ route('register') }}">
                             <i class="material-icons">person_add</i>Add Member </a>
@@ -41,7 +41,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="javascript:">
+                        <a href="{{ route('home') }}">
                             <i class="material-icons">dashboard</i>
                             Dashboard
                         </a>
@@ -61,47 +61,7 @@
                 @endguest
             </ul>
 
-            <ul id="nav-mobile" class="sidenav">
-                <li class="disabled center-align cyan">
-                    <a href="javascript:" class="white-text">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </li>
-
-                @guest
-                    <li>
-                        <a href="{{ route('login') }}">
-                            <i class="material-icons">lock_open</i>Sign In</a>
-                    </li>
-                @else
-                    @if (Route::has('register'))
-                        <li>
-                            <a href="{{ route('register') }}">
-                                <i class="material-icons">person_add</i>Add Member </a>
-                        </li>
-                    @endif
-                    <li>
-                        <a href="javascript:">
-                            <i class="material-icons">account_circle</i>
-                            {{ Auth::user()->name }}
-                        </a>
-                    </li>
-
-                    <li><a href="{{ route('home') }}"><i class="material-icons">dashboard</i> Dashboard</a></li>
-                    <li><a href="{{ route('collection.create') }}"><i class="material-icons">add</i> Add Collection </a></li>
-                    <li><a href="{{ route('collection.index') }}"><i class="material-icons">attach_money</i> Collections List </a></li>
-                    <li><a href="{{ route('expense.create') }}"><i class="material-icons">add</i>Add Expense</a></li>
-                    <li><a href="{{ route('expense.index') }}"><i class="material-icons">money_off</i> Expense List </a></li>
-                    <li><a href="{{ route('report.index') }}"><i class="material-icons">assignment</i> রিপোর্টস</a></li>
-
-                    <li class="logout-wrap">
-                        <a href="javascript:" onclick="jLogoutConfirm(this)"> {{-- event.preventDefault(); document.getElementById('logout-form').submit(); --}}
-                            <i class="material-icons">power_settings_new</i>
-                            Sign Out
-                        </a>
-                    </li>
-                @endguest
-            </ul>
+            @include('elements.mobileNav')
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
 

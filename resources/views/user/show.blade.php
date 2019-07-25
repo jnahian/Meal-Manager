@@ -19,7 +19,7 @@
                             <td>{{ $user->name }}</td>
                         </tr>
                         <tr>
-                            <th>Mobile</th>
+                            <th>Mobile No.</th>
                             <th>:</th>
                             <td>{{ $user->mobile }}</td>
                         </tr>

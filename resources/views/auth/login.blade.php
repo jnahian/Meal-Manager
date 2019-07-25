@@ -12,26 +12,26 @@
 
                         <div class="row">
                             <div class="input-field">
-                                <input id="mobile" type="text" class="validate {{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" value="{{ old('mobile') }}" required autofocus>
-
+                                <i class="material-icons prefix">phone_android</i>
+                                <input id="mobile" type="text" class="validate {{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" value="{{ old('mobile') }}" required autocomplete="off">
+                                <label for="mobile">Mobile No.</label>
                                 @if ($errors->has('mobile'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('mobile') }}</strong>
                                     </span>
                                 @endif
-                                <label for="mobile">Mobile</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field">
-                                <input id="password" type="password" class="validate {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
+                                <i class="material-icons prefix">vpn_key</i>
+                                <input id="password" type="password" class="validate {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required autocomplete="off">
+                                <label for="last_name">Password</label>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                                <label for="last_name">Password</label>
                             </div>
                         </div>
 
