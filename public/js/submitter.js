@@ -111,19 +111,22 @@ submit_form = function (t, e) {
 
 function jNotify(msg, type) {
 
-    var classes = "yellow";
+    var classes = "orange lighten-2";
 
     if (type == 'warning') {
-        classes = "yellow";
+        classes = "orange lighten-2";
     } else if (type == 'error') {
-        classes = "deep-orange";
+        classes = "deep-orange darken-2";
+    } else if (type == 'info') {
+        classes = "blue";
     } else if (type == 'success') {
-        classes = "green";
+        classes = "green darken-2";
     }
 
     M.toast({
         html: msg,
-        classes: "rounded darken-2 " + classes,
+        classes: "rounded " + classes,
+        displayLength: 5000
     });
 }
 

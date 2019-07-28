@@ -402,6 +402,10 @@ td, th {
     .brand-logo img {
         width: 30px;
     }
+
+    #toast-container {
+        top: 10% !important;
+    }
 }
 
 /*wget --limit-rate=200k --no-clobber --convert-links --random-wait -r -p -E -e robots=off -U mozilla http://www.kossboss.com*/
