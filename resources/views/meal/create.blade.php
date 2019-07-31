@@ -26,12 +26,12 @@
                                 <label for="member">Member <span class="red-text text-lighten-3">*</span></label>
                             </div>
 
-                            <div class="input-field col m4 s12">
+                            <div class="input-field col m4 s6">
                                 <input type="number" name="meal[{{$id}}]" id="meal" class="validate" min="0" value="0">
                                 <label for="meal">Meal <span class="red-text text-lighten-3">*</span></label>
                             </div>
 
-                            <div class="input-field col m4 s12">
+                            <div class="input-field col m4 s6">
                                 <input type="number" name="guest[{{$id}}]" id="guest" class="validate" min="0" value="0">
                                 <label for="guest">Guest</label>
                             </div>

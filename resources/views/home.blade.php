@@ -53,17 +53,14 @@
                                         <td class="center-align">{{ number_format($rep->amount_left, 2) }}</td>
                                     </tr>
                                 @endforeach
-                                </tbody>
-
-                                <tfoot>
                                 <tr>
                                     <th class="right-align">Total =</th>
-                                    <th class="center-align">{{ number_format($total_collection, 2) }}</th>
-                                    <th colspan="4"></th>
-                                    <th class="center-align">{{ number_format($total_total_cost, 2) }}</th>
-                                    <th class="center-align">{{ number_format($total_amount_left, 2) }}</th>
+                                    <td class="center-align">{{ number_format($total_collection, 2) }}</td>
+                                    <td colspan="4"></td>
+                                    <td class="center-align">{{ number_format($total_total_cost, 2) }}</td>
+                                    <td class="center-align">{{ number_format($total_amount_left, 2) }}</td>
                                 </tr>
-                                </tfoot>
+                                </tbody>
                             @else
                                 <tfoot>
                                 <tr>

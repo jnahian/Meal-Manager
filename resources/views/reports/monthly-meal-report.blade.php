@@ -40,7 +40,7 @@
                                 <table class="striped responsive-table">
                                     <thead>
                                     <tr>
-                                        <th width="20%">Date &downarrow; / Name &rightarrow;</th>
+                                        <th width="20%">Date/Name</th>
                                         @foreach($reports['users'] as $user)
                                             <th class="center-align">
                                                 {{ $user['name'] }}
@@ -59,18 +59,16 @@
                                         </tr>
 
                                     @endforeach
-                                    </tbody>
-                                    <tfoot>
                                     <tr>
                                         <th class="right-align">Total =</th>
 
                                         @foreach($reports['totals'] as $i => $total)
-                                            <th class="center-align">
+                                            <td class="center-align">
                                                 {{ number_format($total['total_total']) }} ({{ number_format($total['total_guest']) }})
-                                            </th>
+                                            </td>
                                         @endforeach
                                     </tr>
-                                    </tfoot>
+                                    </tbody>
                                 </table>
                             @else
                                 <h3 class="center-align">No data found..</h3>
