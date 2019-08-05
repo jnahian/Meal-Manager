@@ -20,7 +20,7 @@
     <div class="progress">
         <div class="determinate" style="width: 0"></div>
     </div>
-    <nav class="blue-grey" role="navigation">
+    <nav class="blue" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="{{ url('/') }}" class="brand-logo">
                 <img src="{{ asset("svg/dinner.svg") }}" class="" alt="{{ config('app.name', 'Laravel') }}">
