@@ -14,7 +14,7 @@
                     <div class="card-title">{{ $title }}</div>
                     <div class="row">
                         <div class="input-field col m4 s12">
-                            <input type="text" name="date" id="date" class="datepicker validate" readonly value="{{ $meal->date ? $meal->date->format("M d, Y") : "" }}">
+                            <input type="text" name="date" id="date" class="datepicker validate" readonly value="{{ $meal->date ? $meal->date->format("d-m-Y") : "" }}">
                             <label for="date">Date <span class="red-text text-lighten-3">*</span></label>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
     <script>
         $(document).ready(function () {
             $('.datepicker').datepicker({
-                format: 'dd-mm-yyyy',
+                format: 'yyyy-mm-dd',
                 autoClose: true,
             });
 
