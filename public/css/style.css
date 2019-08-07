@@ -233,30 +233,22 @@ nav ul li .material-icons {
     height: 100%;
     background: rgba(0, 0, 0, .5);
     z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    visibility: hidden;
-    opacity: 0;
-    -webkit-transition: .3s linear all;
-    -moz-transition: .3s linear all;
-    -ms-transition: .3s linear all;
-    -o-transition: .3s linear all;
-    transition: .3s linear all;
     text-align: center !important;
     color: #333;
+    display: none;
 }
 
 .confirm-logout.show {
-    visibility: visible;
-    opacity: 1;
+    display: block;
 }
 
 .confirm-logout form {
     width: 30%;
     height: 200px;
+    margin: 0 auto;
     background: #fff;
     padding: 20px;
+    margin-top: calc(50vh - 100px);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
