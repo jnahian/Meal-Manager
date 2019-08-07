@@ -50,6 +50,8 @@
 
         <li><a href="{{ route('user.index') }}"><i class="material-icons">assignment_ind</i> Member List</a></li>
 
+        <li><a href="{{ route('user.change-password', Auth::id()) }}"><i class="material-icons">vpn_key</i> Change Password</a></li>
+
         <li class="logout-wrap">
             <a href="javascript:" onclick="jLogoutConfirm(this)"> {{-- event.preventDefault(); document.getElementById('logout-form').submit(); --}}
                 <i class="material-icons">power_settings_new</i>

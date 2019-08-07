@@ -21,19 +21,19 @@
         <div class="determinate" style="width: 0"></div>
     </div>
     <nav class="blue" role="navigation">
-        <div class="nav-wrapper container">
-            <a id="logo-container" href="{{ url('/') }}" class="brand-logo">
+        <div class="nav-wrapper container-fluid">
+            <a id="logo-container-fluid" href="{{ url('/') }}" class="brand-logo">
                 <img src="{{ asset("svg/dinner.svg") }}" class="" alt="{{ config('app.name', 'Laravel') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
 
             <ul class="right hide-on-med-and-down">
-                @if (Route::has('register') && (hasPermission() || Auth::guest()))
-                    <li>
-                        <a href="{{ route('register') }}">
-                            <i class="material-icons">person_add</i>Add Member </a>
-                    </li>
-                @endif
+                {{-- @if (Route::has('register') && (hasPermission() || Auth::guest()))
+                     <li>
+                         <a href="{{ route('register') }}">
+                             <i class="material-icons">person_add</i>Add Member </a>
+                     </li>
+                 @endif--}}
                 @guest
                     <li>
                         <a href="{{ route('login') }}">
@@ -47,17 +47,31 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:">
+                        <a class="dropdown-trigger" href="#!" data-target="dropdown1">
                             <i class="material-icons">account_circle</i>
                             {{ Auth::user()->name }}
+                            <i class="material-icons right">arrow_drop_down</i>
                         </a>
+
+                        <ul id="dropdown1" class="dropdown-content">
+                            <li><a href="{{ route('user.show', Auth::id()) }}"><i class="material-icons">account_circle</i> Profile</a></li>
+                            <li><a href="{{ route('user.change-password', Auth::id()) }}"><i class="material-icons">vpn_key</i> Change Password</a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:" onclick="jLogoutConfirm(this)"><i class="material-icons">power_settings_new</i> Sign Out</a></li>
+                        </ul>
                     </li>
-                    <li class="logout-wrap">
-                        <a href="javascript:" onclick="jLogoutConfirm(this)"> {{-- event.preventDefault(); document.getElementById('logout-form').submit(); --}}
+                    {{-- <li>
+                         <a href="javascript:">
+                             <i class="material-icons">account_circle</i>
+                             {{ Auth::user()->name }}
+                         </a>
+                     </li>--}}
+                    {{--<li class="logout-wrap">
+                        <a href="javascript:" onclick="jLogoutConfirm(this)"> --}}{{-- event.preventDefault(); document.getElementById('logout-form').submit(); --}}{{--
                             <i class="material-icons">power_settings_new</i>
                             Sign Out
                         </a>
-                    </li>
+                    </li>--}}
                 @endguest
             </ul>
 
@@ -76,7 +90,7 @@
     </nav>
 </div>
 <div class="section grey lighten-5" id="index-banner">
-    <div class="container">
+    <div class="container-fluid">
 
         @yield('content')
 
@@ -85,7 +99,7 @@
 
 <footer class="page-footer blue-grey darken-4">
     <div class="footer-copyright">
-        <div class="container center-align">
+        <div class="container-fluid center-align">
             {{ date('Y') }} &copy; <a class="blue-text lighten-2" href="http://jnahian.com">Nahian</a>
         </div>
     </div>

@@ -328,6 +328,16 @@ td, th {
     color: #f24500;
 }
 
+ul#dropdown1 {
+    width: 200px !important;
+    height: auto !important;
+    top: 65px !important;
+}
+
+nav .brand-logo {
+    margin-left: 15px;
+}
+
 /*.card .card-title:before {
     position: absolute;
     content: '';
@@ -336,6 +346,11 @@ td, th {
     background: #ddd;
     bottom: 0;
 }*/
+
+#index-banner {
+    /*background: url("../images/spoon-2426623_1920.jpg") !important;*/
+    /*background-size: cover;*/
+}
 
 @media (max-width: 767px) {
     .container {
