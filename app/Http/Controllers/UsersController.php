@@ -201,7 +201,7 @@ class UsersController extends Controller
     
     public function change_password( User $user )
     {
-        $title = "User :: Change Password";
+        $title = "Change Password";
         return view( 'user.change-password', compact( 'title', 'user' ) );
     }
     
