@@ -352,6 +352,11 @@ nav .brand-logo {
     /*background-size: cover;*/
 }
 
+.page-footer .footer-copyright {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 @media (max-width: 767px) {
     .container {
         width: auto;
