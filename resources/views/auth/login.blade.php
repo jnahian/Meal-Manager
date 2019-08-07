@@ -48,11 +48,11 @@
                             Sign In
                         </button>
 
-                        @if (Route::has('password.request'))
-                            <a class="btn orange right btn-small" href="{{ route('password.request') }}">
-                                Forot Password?
-                            </a>
-                        @endif
+                        {{-- @if (Route::has('password.request'))
+                             <a class="btn orange right btn-small" href="{{ route('password.request') }}">
+                                 Forot Password?
+                             </a>
+                         @endif--}}
                     </div>
                 </div>
             </form>

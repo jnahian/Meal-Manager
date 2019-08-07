@@ -23,6 +23,8 @@ Route::group( [ 'middleware' => 'auth' ], function () {
     Route::get( '/users/{user}', 'UsersController@show' )->name( 'user.show' );
     Route::get( '/users/{user}/permission', 'UsersController@permission' )->name( 'user.permission' );
     Route::put( '/users/{user}/permission', 'UsersController@update_permission' )->name( 'user.permission-update' );
+    Route::get( '/users/{user}/change-password', 'UsersController@change_password' )->name( 'user.change-password' );
+    Route::put( '/users/{user}/change-password', 'UsersController@update_password' )->name( 'user.update-password' );
     Route::delete( '/users/{user}', 'UsersController@destroy' )->name( 'user.destroy' );
     
     Route::resource( '/collection', 'CollectionsController' );

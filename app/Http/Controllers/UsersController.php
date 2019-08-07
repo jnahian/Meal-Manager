@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -194,6 +195,37 @@ class UsersController extends Controller
             $response['msg']      = "User Permission Changed Successfully!";
         } catch ( Exception $exception ) {
             $response['msg'] = $exception->getMessage();
+        }
+        return response()->json( $response );
+    }
+    
+    public function change_password( User $user )
+    {
+        $title = "User :: Change Password";
+        return view( 'user.change-password', compact( 'title', 'user' ) );
+    }
+    
+    public function update_password( Request $request, User $user )
+    {
+        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
+        if ( Auth::id() == $user->id ) {
+            $request->validate( [
+                'password' => 'required|min:6|confirmed',
+            ] );
+            
+            try {
+                $user->password   = bcrypt( $request->password );
+                $user->updated_at = Carbon::now()->toDateString();
+                $user->save();
+                
+                $response['success']  = TRUE;
+                $response['redirect'] = $request->previous;
+                $response['msg']      = "User Password Changed Successfully!";
+            } catch ( Exception $exception ) {
+                $response['msg'] = $exception->getMessage();
+            }
+        } else {
+            $response['msg'] = 'Permission Denied!';
         }
         return response()->json( $response );
     }
