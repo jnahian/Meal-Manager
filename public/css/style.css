@@ -357,6 +357,15 @@ nav .brand-logo {
     padding-right: 15px;
 }
 
+.dp12 {
+    font-size: 14px;
+    float: none;
+}
+
+.footer-copyright p {
+    margin: 0;
+}
+
 @media (max-width: 767px) {
     .container {
         width: auto;

@@ -21,8 +21,8 @@
         <div class="determinate" style="width: 0"></div>
     </div>
     <nav class="blue" role="navigation">
-        <div class="nav-wrapper container-fluid">
-            <a id="logo-container-fluid" href="{{ url('/') }}" class="brand-logo">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="{{ url('/') }}" class="brand-logo">
                 <img src="{{ asset("svg/dinner.svg") }}" class="" alt="{{ config('app.name', 'Laravel') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
@@ -90,7 +90,7 @@
     </nav>
 </div>
 <div class="section grey lighten-5" id="index-banner">
-    <div class="container-fluid">
+    <div class="container">
 
         @yield('content')
 
@@ -99,8 +99,8 @@
 
 <footer class="page-footer blue-grey darken-4">
     <div class="footer-copyright">
-        <div class="container-fluid center-align">
-            {{ date('Y') }} &copy; <a class="blue-text lighten-2" href="http://jnahian.com">Nahian</a>
+        <div class="container center-align">
+            <p>{{ date('Y') }} &copy; Made with <i class="material-icons dp12">favorite_border</i> by <a class="blue-text lighten-2" href="http://jnahian.com">Nahian</a></p>
         </div>
     </div>
 </footer>
