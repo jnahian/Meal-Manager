@@ -27,12 +27,12 @@
                         </div>
 
                         <div class="input-field col m4 s12">
-                            <input type="number" name="meal" id="meal" class="validate" min="0" value="{{ $meal->meal }}">
+                            <input type="text" name="meal" id="meal" class="validate" min="0" value="{{ $meal->meal }}">
                             <label for="meal">Meal <span class="red-text text-lighten-3">*</span></label>
                         </div>
 
                         <div class="input-field col m4 s12">
-                            <input type="number" name="guest" id="guest" class="validate" min="0" value="{{ $meal->guest }}">
+                            <input type="text" name="guest" id="guest" class="validate" min="0" value="{{ $meal->guest }}">
                             <label for="guest">Guest</label>
                         </div>
                     </div>
