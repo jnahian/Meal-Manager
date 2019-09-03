@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Expense;
 use App\Income;
+use App\MonthlySummery;
 use App\Reports;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -51,6 +52,19 @@ class ReportsController extends Controller
         $reports = Reports::getMonthlyMealReaport( $request );
         
         return view( 'reports.monthly-meal-report', compact( 'title', 'reports' ) );
+    }
+    
+    public function monthly_all_report( Request $request )
+    {
+        $title = "Monthly All Report";
+        
+        if ( $request->s ) {
+            $msr = MonthlySummery::where( 'year', $request->year )->where( 'month', $request->month )->get();
+        } else {
+            $msr = FALSE;
+        }
+        
+        return view( 'reports.monthly-all-report', compact( 'title', 'msr' ) );
     }
     
     public function getDailyIncomeReport( Request $request )

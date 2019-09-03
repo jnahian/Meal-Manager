@@ -35,5 +35,6 @@ Route::group( [ 'middleware' => 'auth' ], function () {
         Route::get( '/', 'ReportsController@index' )->name( 'index' );
         Route::get( '/daily', 'ReportsController@daily_income_expense' )->name( 'daily' );
         Route::get( '/monthly-meal', 'ReportsController@monthly_meal_report' )->name( 'monthly-meal' );
+        Route::get( '/monthly-all', 'ReportsController@monthly_all_report' )->name( 'monthly-all' );
     } );
 } );

@@ -14,6 +14,7 @@
         @endif
         <li class="collection-item"><a href="{{ route('meal.index') }}"><i class="material-icons">assistant</i> Meal List </a></li>
         <li class="collection-item"><a href="{{ route('report.monthly-meal') }}"><i class="material-icons">local_dining</i> Monthly Meal Report</a></li>
+        <li class="collection-item"><a href="{{ route('report.monthly-all') }}"><i class="material-icons">local_dining</i> Monthly Report</a></li>
 
         @if (Route::has('register') && (hasPermission() || Auth::guest()))
             <li class="collection-item">
