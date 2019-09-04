@@ -20,9 +20,9 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Mobile No.</th>
-                            <th>Email</th>
+                            {{--                            <th>Email</th>--}}
                             <th class="center-align">Status</th>
-                            <th class="center-align">Action</th>
+                            <th class="center-align">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -32,7 +32,7 @@
                                     <td>{{ ($loop->index + 1) }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->mobile }}</td>
-                                    <td>{{ $user->email }}</td>
+                                    {{--                                    <td>{{ $user->email }}</td>--}}
                                     <td class="center-align">
                                         @if($user->status)
                                             <span class="new badge green" data-badge-caption="">Active</span>
@@ -41,22 +41,22 @@
                                         @endif
                                     </td>
                                     <td class="center-align delete-wrap">
-                                        <a href="{{ route('user.show', $user->id) }}" class="btn-floating btn-small waves-effect waves-light green tooltipped" data-position="top"
+                                        <a href="{{ route('user.show', $user->id) }}" class="btn btn-action waves-effect waves-light green tooltipped" data-position="top"
                                            data-tooltip="Show Details">
                                             <span class="material-icons">remove_red_eye</span>
                                         </a>
 
-                                        {{--<a href="{{ route('user.edit', $user->id) }}" class="btn-floating btn-small waves-effect waves-light cyan tooltipped" data-position="top"
+                                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-action waves-effect waves-light cyan tooltipped" data-position="top"
                                            data-tooltip="Change">
                                             <span class="material-icons">edit</span>
-                                        </a>--}}
+                                        </a>
                                         @if(hasPermission())
-                                            <a href="{{ route('user.permission', $user->id) }}" class="btn-floating btn-small waves-effect waves-light purple tooltipped" data-position="top"
+                                            <a href="{{ route('user.permission', $user->id) }}" class="btn btn-action waves-effect waves-light purple tooltipped" data-position="top"
                                                data-tooltip="Permission">
                                                 <span class="material-icons">lock_open</span>
                                             </a>
 
-                                            <a href="javascript:" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="top"
+                                            <a href="javascript:" class="btn btn-action waves-effect waves-light red tooltipped" data-position="top"
                                                data-tooltip="Delete" onclick="jShowDelete(this)">
                                                 <span class="material-icons">delete</span>
                                             </a>

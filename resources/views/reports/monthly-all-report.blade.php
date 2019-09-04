@@ -35,6 +35,8 @@
 
                     @if($msr)
                         <div id="printable">
+                            <h5 class="center">Monthly Summery Report of <i>{{ $date }}</i></h5>
+                            <hr>
                             <table class="responsive-table striped">
                                 <thead>
                                 <tr>
@@ -101,9 +103,3 @@
         </div>
     </div>
 @endsection
-
-@push('page-js')
-    <script>
-
-    </script>
-@endpush

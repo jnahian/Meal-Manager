@@ -38,7 +38,7 @@
                             <th>আয়ের পরিমাণ</th>
                             <th class="center-align">Status</th>
                             <th class="center-align">Updated</th>
-                            <th class="center-align">Action</th>
+                            <th class="center-align">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -54,17 +54,17 @@
                                     </td>
                                     <td class="center-align">{{ $income->updated_at->format('d M, Y h:i A') }}</td>
                                     <td class="center-align delete-wrap">
-                                        <a href="{{ route('income.show', $income->uuid) }}" class="btn-floating btn-small waves-effect waves-light green tooltipped" data-position="top"
+                                        <a href="{{ route('income.show', $income->uuid) }}" class="btn-action btn-small waves-effect waves-light green tooltipped" data-position="top"
                                            data-tooltip="Show Details">
                                             <span class="material-icons">remove_red_eye</span>
                                         </a>
 
-                                        <a href="{{ route('income.edit', $income->uuid) }}" class="btn-floating btn-small waves-effect waves-light cyan tooltipped" data-position="top"
+                                        <a href="{{ route('income.edit', $income->uuid) }}" class="btn-action btn-small waves-effect waves-light cyan tooltipped" data-position="top"
                                            data-tooltip="Change">
                                             <span class="material-icons">edit</span>
                                         </a>
 
-                                        <a href="javascript:" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="top"
+                                        <a href="javascript:" class="btn-action btn-small waves-effect waves-light red tooltipped" data-position="top"
                                            data-tooltip="Delete" onclick="jShowDelete(this)">
                                             <span class="material-icons">delete</span>
                                         </a>

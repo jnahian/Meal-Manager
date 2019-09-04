@@ -31,8 +31,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-action">
-                    <button type="submit" class="btn green" onclick="submit_form(this, event)">
+                <div class="card-action center-align">
+                    <button type="submit" class="btn green btn-large" onclick="submit_form(this, event)">
                         <i class="material-icons">save</i>
                         Update Password
                     </button>

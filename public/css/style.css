@@ -366,6 +366,18 @@ nav .brand-logo {
     margin: 0;
 }
 
+.btn-action {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    padding: 4px;
+}
+
+.btn-action > .material-icons {
+    font-size: 16px;
+    margin-right: 0;
+}
+
 @media (max-width: 767px) {
     .container {
         width: auto;

@@ -56,15 +56,18 @@ class ReportsController extends Controller
     
     public function monthly_all_report( Request $request )
     {
-        $title = "Monthly All Report";
+        $title = "Monthly Report";
         
         if ( $request->s ) {
-            $msr = MonthlySummery::where( 'year', $request->year )->where( 'month', $request->month )->get();
+            $date = Carbon::parse( "{$request->year}-{$request->month}-01" )->format( 'F, Y' );
+            $msr  = MonthlySummery::where( 'year', $request->year )->where( 'month', $request->month )->get();
+            
         } else {
-            $msr = FALSE;
+            $date = "";
+            $msr  = FALSE;
         }
-        
-        return view( 'reports.monthly-all-report', compact( 'title', 'msr' ) );
+    
+        return view( 'reports.monthly-all-report', compact( 'title', 'msr', 'date' ) );
     }
     
     public function getDailyIncomeReport( Request $request )

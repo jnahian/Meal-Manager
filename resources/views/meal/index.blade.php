@@ -52,7 +52,7 @@
                             <th class="center-align">Guest</th>
                             <th class="center-align">Total</th>
                             @if(hasPermission())
-                                <th class="center-align">Action</th>
+                                <th class="center-align">Actions</th>
                             @endif
                         </tr>
                         </thead>
@@ -68,12 +68,12 @@
                                     <td class="center-align">{{ $meal->total }}</td>
                                     @if(hasPermission())
                                         <td class="center-align delete-wrap">
-                                            <a href="{{ route('meal.edit', $meal->id) }}" class="btn-floating btn-small waves-effect waves-light cyan tooltipped" data-position="top"
+                                            <a href="{{ route('meal.edit', $meal->id) }}" class="btn-action btn-small waves-effect waves-light cyan tooltipped" data-position="top"
                                                data-tooltip="Change">
                                                 <span class="material-icons">edit</span>
                                             </a>
 
-                                            <a href="javascript:" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="top"
+                                            <a href="javascript:" class="btn-action btn-small waves-effect waves-light red tooltipped" data-position="top"
                                                data-tooltip="Delete" onclick="jShowDelete(this)">
                                                 <span class="material-icons">delete</span>
                                             </a>

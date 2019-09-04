@@ -73,8 +73,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-action">
-                        <button type="submit" class="btn green">
+                    <div class="card-action center-align">
+                        <button type="submit" class="btn green btn-large">
                             <i class="material-icons">person_add</i>
                             Add Member
                         </button>

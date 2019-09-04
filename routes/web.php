@@ -19,13 +19,11 @@ Auth::routes();
 
 Route::group( [ 'middleware' => 'auth' ], function () {
     Route::get( '/home', 'HomeController@index' )->name( 'home' );
-    Route::get( '/users', 'UsersController@index' )->name( 'user.index' );
-    Route::get( '/users/{user}', 'UsersController@show' )->name( 'user.show' );
-    Route::get( '/users/{user}/permission', 'UsersController@permission' )->name( 'user.permission' );
-    Route::put( '/users/{user}/permission', 'UsersController@update_permission' )->name( 'user.permission-update' );
-    Route::get( '/users/{user}/change-password', 'UsersController@change_password' )->name( 'user.change-password' );
-    Route::put( '/users/{user}/change-password', 'UsersController@update_password' )->name( 'user.update-password' );
-    Route::delete( '/users/{user}', 'UsersController@destroy' )->name( 'user.destroy' );
+    Route::get( '/user/{user}/permission', 'UsersController@permission' )->name( 'user.permission' );
+    Route::put( '/user/{user}/permission', 'UsersController@update_permission' )->name( 'user.permission-update' );
+    Route::get( '/user/{user}/change-password', 'UsersController@change_password' )->name( 'user.change-password' );
+    Route::put( '/user/{user}/change-password', 'UsersController@update_password' )->name( 'user.update-password' );
+    Route::resource( 'user', 'UsersController' );
     
     Route::resource( '/collection', 'CollectionsController' );
     Route::resource( '/expense', 'ExpenseController' );

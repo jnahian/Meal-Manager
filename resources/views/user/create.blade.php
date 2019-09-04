@@ -6,63 +6,79 @@
         @include('elements.sideNav')
 
         <div class="col m9 s12">
-            {!! Form::open(['route' => 'expense.store']) !!}
+            {!! Form::open(['route' => 'user.store']) !!}
             <div class="card">
                 @include('elements.preloader')
                 <div class="card-content">
                     <div class="card-title">{{ $title }}</div>
+
                     <div class="row">
+                        <div class="input-field col m6 s12">
+                            <input id="name" type="text" class="validate {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
-                        <div class="input-field col m4 s12">
-                            <select name="user_id" id="user_id">
-                                <option value="" disabled selected>Choose Member</option>
-                                @foreach($users as $id => $name)
-                                    <option value="{{ $id }}">{{ $name }}</option>
-                                @endforeach
-                            </select>
-                            <label for="user_id">Member <span class="red-text text-lighten-3">*</span></label>
+                            @if ($errors->has('name'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                            @endif
+                            <label for="name">Full Name</label>
                         </div>
 
-                        <div class="input-field col m4 s12">
-                            <input type="text" name="date" id="date" class="datepicker validate" readonly value="{{ date('d-m-Y') }}">
-                            <label for="date">Date <span class="red-text text-lighten-3">*</span></label>
+                        <div class="input-field col m6 s12">
+                            <input id="email" type="email" class="validate {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
+                            <label for="email">Email</label>
                         </div>
 
-                        <div class="input-field col m4 s12">
-                            <input type="number" min="0" name="amount" id="amount" class="validate right-align">
-                            <label for="amount">Amount of Expense <span class="red-text text-lighten-3">*</span></label>
-                        </div>
                     </div>
 
                     <div class="row">
 
-                        <div class="input-field col m8 s12">
-                            <input type="text" name="purpose" id="purpose" class="validate">
-                            <label for="purpose">Expense Details <span class="red-text text-lighten-3">*</span></label>
+                        <div class="input-field col m6 s12">
+                            <input id="mobile" type="text" class="validate {{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" value="{{ old('mobile') }}" required>
+
+                            @if ($errors->has('mobile'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('mobile') }}</strong>
+                                    </span>
+                            @endif
+                            <label for="mobile">Mobile No.</label>
                         </div>
 
-                        <div class="input-field col m4 s12">
-                            {!! Form::select('type', Expense_types()); !!}
-                            <label for="type">Type <span class="red-text text-lighten-3">*</span></label>
-                        </div>
                     </div>
 
                     <div class="row">
-                        <div class="input-field col m12 s12">
-                            <textarea id="remarks" name="remarks" class="materialize-textarea" data-length="200"></textarea>
-                            <label for="remarks">Remarks</label>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="input-field col m4 s12">
-                            {!! Form::select('status', status()); !!}
-                            <label for="status">Status</label>
+                        <div class="input-field col m6 s12">
+                            <input id="password" type="password" class="validate {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                            @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                            @endif
+                            <label for="last_name">Password </label>
+                        </div>
+
+                        <div class="input-field col m6 s12">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+
+                            @if ($errors->has('password_confirmation'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                            @endif
+                            <label for="password-confirm">Confirm Password</label>
                         </div>
                     </div>
                 </div>
-                <div class="card-action">
-                    <button type="submit" class="btn green" onclick="submit_form(this, event)">
+                <div class="card-action center-align">
+                    <button type="submit" class="btn green btn-large" onclick="submit_form(this, event)">
                         <i class="material-icons">save</i>
                         Save Now
                     </button>

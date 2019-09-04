@@ -8,6 +8,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -51,12 +53,11 @@ class UsersController extends Controller
      *
      * @return Response
      */
-//    public function create()
-//    {
-//        $title = "Add User";
-//        $users = User::getDropdown();
-//        return view( 'user.create', compact( 'title', 'users' ) );
-//    }
+    public function create()
+    {
+        $title = "Add Member";
+        return view( 'user.create', compact( 'title' ) );
+    }
     
     /**
      * Store a newly created resource in storage.
@@ -64,39 +65,36 @@ class UsersController extends Controller
      * @param Request $request
      * @return Response
      */
-//    public function store( Request $request )
-//    {
-//        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
-//        $request->validate( [
-//            'user_id' => 'required',
-//            'date'    => 'required',
-//            'purpose' => 'required',
-//            'type'    => 'required',
-//            'amount'  => 'required|numeric',
-//        ] );
-//
-//        try {
-//            $user             = new User();
-//            $user->date       = Carbon::parse( $request->date )->toDateTimeString();
-//            $user->user_id    = $request->user_id;
-//            $user->purpose    = $request->purpose;
-//            $user->amount     = $request->amount;
-//            $user->type       = $request->type;
-//            $user->remarks    = $request->remarks;
-//            $user->status     = $request->status;
-//            $user->created_by = Auth::user()->id;
-//            $user->created_at = Carbon::now()->toDateTimeString();
-//            $user->save();
-//
-//            $response['success']  = TRUE;
-//            $response['redirect'] = $request->previous;
-//            $response['msg']      = "User Saved Successfully!";
-//        } catch ( Exception $exception ) {
-//            $response['msg'] = $exception->getMessage();
-//        }
-//
-//        return response()->json( $response );
-//    }
+    public function store( Request $request )
+    {
+        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
+        $request->validate( [
+            'name'     => [ 'required', 'string', 'max:255' ],
+            'email'    => [ 'required', 'string', 'email', 'max:255', 'unique:users' ],
+            'mobile'   => [ 'required', 'numeric', 'digits:11', 'unique:users' ],
+            'password' => [ 'required', 'string', 'min:6', 'confirmed' ],
+        ] );
+        
+        try {
+            $user             = new User();
+            $user->name       = $request->name;
+            $user->email      = $request->email;
+            $user->mobile     = $request->mobile;
+            $user->password   = Hash::make( $request->password );
+            $user->status     = 1;
+            $user->role       = 2;
+            $user->created_at = Carbon::now()->toDateTimeString();
+            $user->save();
+            
+            $response['success']  = TRUE;
+            $response['redirect'] = route( 'user.index' );
+            $response['msg']      = "Member Saved Successfully!";
+        } catch ( Exception $exception ) {
+            $response['msg'] = $exception->getMessage();
+        }
+        
+        return response()->json( $response );
+    }
     
     /**
      * Display the specified resource.
@@ -116,12 +114,11 @@ class UsersController extends Controller
      * @param User $user
      * @return Response
      */
-//    public function edit( User $user )
-//    {
-//        $title = "Edit User";
-//        $users = User::getDropdown();
-//        return view( 'user.edit', compact( 'title', 'user', 'users' ) );
-//    }
+    public function edit( User $user )
+    {
+        $title = "Edit Member";
+        return view( 'user.edit', compact( 'title', 'user' ) );
+    }
     
     /**
      * Update the specified resource in storage.
@@ -130,38 +127,32 @@ class UsersController extends Controller
      * @param User    $user
      * @return Response
      */
-//    public function update( Request $request, User $user )
-//    {
-//        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
-//
-//        $request->validate( [
-//            'user_id' => 'required',
-//            'date'    => 'required',
-//            'purpose' => 'required',
-//            'type'    => 'required',
-//            'amount'  => 'required|numeric',
-//        ] );
-//
-//        try {
-//            $user->date       = Carbon::parse( $request->date )->toDateTimeString();
-//            $user->user_id    = $request->user_id;
-//            $user->purpose    = $request->purpose;
-//            $user->amount     = $request->amount;
-//            $user->type       = $request->type;
-//            $user->remarks    = $request->remarks;
-//            $user->status     = $request->status;
-//            $user->updated_by = Auth::user()->id;
-//            $user->updated_at = Carbon::now()->toDateTimeString();
-//            $user->save();
-//
-//            $response['success']  = TRUE;
-//            $response['redirect'] = $request->previous;
-//            $response['msg']      = "User Updated Successfully!";
-//        } catch ( Exception $exception ) {
-//            $response['msg'] = $exception->getMessage();
-//        }
-//        return response()->json( $response );
-//    }
+    public function update( Request $request, User $user )
+    {
+        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
+        
+        $request->validate( [
+            'name'   => [ 'required', 'string', 'max:255' ],
+            'email'  => [ 'required', 'string', 'email', 'max:255', Rule::unique( 'users' )->ignore( $user->id ) ],
+            'mobile' => [ 'required', 'numeric', 'digits:11', Rule::unique( 'users' )->ignore( $user->id ) ],
+        ] );
+        
+        try {
+            
+            $user->name       = $request->name;
+            $user->email      = $request->email;
+            $user->mobile     = $request->mobile;
+            $user->updated_at = Carbon::now()->toDateTimeString();
+            $user->save();
+            
+            $response['success']  = TRUE;
+            $response['redirect'] = $request->previous;
+            $response['msg']      = "Member Updated Successfully!";
+        } catch ( Exception $exception ) {
+            $response['msg'] = $exception->getMessage();
+        }
+        return response()->json( $response );
+    }
     
     /**
      * Show the form for editing the specified resource.

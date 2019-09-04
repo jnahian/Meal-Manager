@@ -42,8 +42,8 @@
                             </label>
                         </p>
                     </div>
-                    <div class="card-action text-right">
-                        <button type="submit" class="btn green">
+                    <div class="card-action center-align">
+                        <button type="submit" class="btn green btn-large btn-large">
                             <i class="material-icons">lock_open</i>
                             Sign In
                         </button>

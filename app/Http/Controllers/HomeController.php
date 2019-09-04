@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\MonthlySummery;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,10 +25,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $title = "Dashboard";
+        $title = "Monthly Summery of " . date( 'F, Y' );
     
-        $msr = MonthlySummery::where( 'year', date( 'Y' ) )->where( 'month', date( 'm' ) )->get();
+        $msr = MonthlySummery::where( 'year', date( 'Y' ) )
+            ->where( 'month', date( 'm' ) )
+            ->where( 'total_cost', '>', 0 )
+            ->orderBy( 'user_id' )->get();
     
-        return view( 'home', compact( 'title', 'msr' ) );
+    
+        $total = MonthlySummery::where( 'year', date( 'Y' ) )
+            ->where( 'month', date( 'm' ) )
+            ->where( 'total_cost', '>', 0 )
+            ->select(
+                DB::raw( "year, month, sum(total_collection) total_collection, sum(total_cost) total_cost, sum(amount_left) amount_left" )
+            )
+            ->groupBy( 'year', 'month' )
+            ->orderBy( 'user_id' )
+            ->first();
+    
+        return view( 'home', compact( 'title', 'msr', 'total' ) );
     }
 }

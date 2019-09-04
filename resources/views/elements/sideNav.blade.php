@@ -16,9 +16,9 @@
         <li class="collection-item"><a href="{{ route('report.monthly-meal') }}"><i class="material-icons">local_dining</i> Monthly Meal Report</a></li>
         <li class="collection-item"><a href="{{ route('report.monthly-all') }}"><i class="material-icons">local_dining</i> Monthly Report</a></li>
 
-        @if (Route::has('register') && (hasPermission() || Auth::guest()))
+        @if (Route::has('user.create') && (hasPermission()))
             <li class="collection-item">
-                <a href="{{ route('register') }}">
+                <a href="{{ route('user.create') }}">
                     <i class="material-icons">person_add</i>Add Member </a>
             </li>
         @endif
