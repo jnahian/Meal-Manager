@@ -61,4 +61,6 @@
             </a>
         </li>
     @endguest
+
+    <li><a href="{{ route('about') }}"><i class="material-icons">info_outline</i> About</a></li>
 </ul>

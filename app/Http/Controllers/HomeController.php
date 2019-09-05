@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\MonthlySummery;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
@@ -15,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware( 'auth' );
+        $this->middleware( 'auth' )->except( 'about' );
     }
     
     /**
@@ -44,5 +46,18 @@ class HomeController extends Controller
             ->first();
     
         return view( 'home', compact( 'title', 'msr', 'total' ) );
+    }
+    
+    /**
+     * About The APP
+     *
+     * @return Factory|View
+     */
+    public function about()
+    {
+        $title    = "About";
+        $git_link = "";
+        
+        return view( 'about', compact( 'title', 'git_link' ) );
     }
 }

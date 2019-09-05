@@ -378,6 +378,10 @@ nav .brand-logo {
     margin-right: 0;
 }
 
+.text-uppercase {
+    text-transform: uppercase;
+}
+
 @media (max-width: 767px) {
     .container {
         width: auto;

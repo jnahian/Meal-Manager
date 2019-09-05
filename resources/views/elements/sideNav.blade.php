@@ -24,5 +24,7 @@
         @endif
         <li class="collection-item"><a href="{{ route('user.index') }}"><i class="material-icons">assignment_ind</i> Member List</a></li>
         <li class="collection-item"><a href="{{ route('user.change-password', Auth::id()) }}"><i class="material-icons">vpn_key</i> Change Password</a></li>
+
+        <li class="collection-item"><a href="{{ route('about') }}"><i class="material-icons">info_outline</i> About</a></li>
     </ul>
 </div>

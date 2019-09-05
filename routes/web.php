@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::group( [ 'middleware' => 'auth' ], function () {
     Route::get( '/home', 'HomeController@index' )->name( 'home' );
+    Route::get( '/about', 'HomeController@about' )->name( 'about' );
     Route::get( '/user/{user}/permission', 'UsersController@permission' )->name( 'user.permission' );
     Route::put( '/user/{user}/permission', 'UsersController@update_permission' )->name( 'user.permission-update' );
     Route::get( '/user/{user}/change-password', 'UsersController@change_password' )->name( 'user.change-password' );
