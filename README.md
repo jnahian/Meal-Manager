@@ -1,6 +1,6 @@
 ## MEAL MANAGER
 
-"MEAL MANAGER" IS A SIMPLE APPLICATION TO MANAGE TRACKING OF COLLECTION, EXPENSE, MEALS AND MONTHLY COSTS OF A MESS OR OFFICES. IT'S VERY LIGHT AND EASY TO USE. I'VE TRIED TO MAKE IT AS EFFICIENT AS I NEED.
+"Meal Manager" is a simple application to manage tracking of collection, expense, meals and monthly costs of a Mess or Offices. It's very light and easy to use. I've tried to make it as efficient as i need. If you have any suggessions plase send me @[email](mailto:info@jnahian.com).
  
 ## KEY FEATURES
 
