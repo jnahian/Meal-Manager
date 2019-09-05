@@ -40,11 +40,13 @@
         @endif
         <li><a href="{{ route('meal.index') }}"><i class="material-icons">assistant</i> Meal List </a></li>
         <li><a href="{{ route('report.monthly-meal') }}"><i class="material-icons">local_dining</i> Monthly Meal Report</a></li>
+        <li><a href="{{ route('report.monthly-all') }}"><i class="material-icons">local_dining</i> Monthly Report</a></li>
 
-        @if (Route::has('register') && (hasPermission() || Auth::guest()))
+        @if (Route::has('user.create') && (hasPermission()))
             <li>
-                <a href="{{ route('register') }}">
-                    <i class="material-icons">person_add</i>Add Member </a>
+                <a href="{{ route('user.create') }}">
+                    <i class="material-icons">person_add</i> Add Member
+                </a>
             </li>
         @endif
 
