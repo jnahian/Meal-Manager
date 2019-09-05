@@ -1,6 +1,6 @@
-## Meal Manager
+## MEAL MANAGER
 
-Meal Manager is a web application for an Office or Mess with simple, easy UI.
+"MEAL MANAGER" IS A SIMPLE APPLICATION TO MANAGE TRACKING OF COLLECTION, EXPENSE, MEALS AND MONTHLY COSTS OF A MESS OR OFFICES. IT'S VERY LIGHT AND EASY TO USE. I'VE TRIED TO MAKE IT AS EFFICIENT AS I NEED.
  
  Key Features:
 
@@ -8,6 +8,6 @@ Meal Manager is a web application for an Office or Mess with simple, easy UI.
 - Realistic user interface.
 - Mobile friendly.
 
-## License
+## LICENSE
 
 The Meal Manager application is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
