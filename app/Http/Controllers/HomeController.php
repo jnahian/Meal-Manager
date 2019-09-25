@@ -17,9 +17,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware( 'auth' )->except( 'about' );
+        $this->middleware('auth')->except('about');
     }
-    
+
     /**
      * Show the application dashboard.
      *
@@ -27,27 +27,38 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $title = "Monthly Summery of " . date( 'F, Y' );
-    
-        $msr = MonthlySummery::where( 'year', date( 'Y' ) )
-            ->where( 'month', date( 'm' ) )
-            ->where( 'total_cost', '>', 0 )
-            ->orderBy( 'user_id' )->get();
-    
-    
-        $total = MonthlySummery::where( 'year', date( 'Y' ) )
-            ->where( 'month', date( 'm' ) )
-            ->where( 'total_cost', '>', 0 )
+        $title = "Monthly Summery of " . date('F, Y');
+
+        $msr = MonthlySummery::where('year', date('Y'))
+            ->where('month', date('m'))
+            ->where('total_cost', '>', 0)
+            ->orderBy('user_id')->get();
+
+
+        $total = MonthlySummery::where('year', date('Y'))
+            ->where('month', date('m'))
+            ->where('total_cost', '>', 0)
             ->select(
-                DB::raw( "year, month, sum(total_collection) total_collection, sum(total_cost) total_cost, sum(amount_left) amount_left" )
+                DB::raw("year, month, sum(collection) total_collection, sum(total_cost) total_cost, sum(amount_left) amount_left")
             )
-            ->groupBy( 'year', 'month' )
-            ->orderBy( 'user_id' )
+            ->groupBy('year', 'month')
+            ->orderBy('user_id')
             ->first();
-    
-        return view( 'home', compact( 'title', 'msr', 'total' ) );
+
+        $yearly = MonthlySummery::where('year', date('Y'))
+            ->where('total_cost', '>', 0)
+            ->select(
+                DB::raw("year, month, sum(collection) total_collection, sum(total_cost) total_cost, sum(amount_left) amount_left")
+            )
+            ->groupBy('year', 'month')
+            ->orderBy('month')
+            ->get();
+
+//        dd($yearly->pluck('total_cost'));
+
+        return view('home', compact('title', 'msr', 'total', 'yearly'));
     }
-    
+
     /**
      * About The APP
      *
@@ -55,9 +66,9 @@ class HomeController extends Controller
      */
     public function about()
     {
-        $title    = "About";
+        $title = "About";
         $git_link = "";
-        
-        return view( 'about', compact( 'title', 'git_link' ) );
+
+        return view('about', compact('title', 'git_link'));
     }
 }

@@ -11,10 +11,14 @@
                     <div id="columnchart_material"></div>
                 </div>
             </div>
-            <div class="card">
+            {{--<div class="card">
                 <div class="card-content">
                     <div id="donutchart"></div>
-                    </body>
+                </div>
+            </div>--}}
+            <div class="card">
+                <div class="card-content">
+                    <div id="curve_chart"></div>
                 </div>
             </div>
 
@@ -106,9 +110,8 @@
                 $name = $exp[0];
             @endphp
             rows.push(['{{ $name }}', {{ $rep->collection }}, {{ $rep->total_cost }}, {{ $rep->amount_left }}]);
-            @endforeach
 
-            console.log(rows);
+            @endforeach
 
             function drawChart() {
                 var data = google.visualization.arrayToDataTable(rows);
@@ -128,7 +131,7 @@
         </script>
     @endif
 
-    @if($total)
+    {{--@if($total)
         <script type="text/javascript">
             google.charts.load("current", {packages: ["corechart"]});
             google.charts.setOnLoadCallback(drawChart2);
@@ -138,17 +141,46 @@
                     ['Task', 'Hours per Day'],
                     ['Collection', {{ $total->total_collection }}],
                     ['Expense', {{ $total->total_cost }}],
-                    ['Amount Left/Due', {{ $total->total_cost }}],
+                    ['Amount Left/Due', {{ $total->amount_left }}],
                 ]);
 
                 var options = {
                     title: 'Total Collection - Expanse',
-                    pieHole: 0.4,
-                    colors: ['#4CAF50', '#F44336', '#00bcd4'],
+                    pieHole: 0.4,                    colors: ['#4CAF50', '#F44336', '#00bcd4'],
                     height: 400,
                 };
 
                 var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                chart.draw(data, options);
+            }
+        </script>
+    @endif--}}
+
+    @if($yearly)
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            var carveData = [['Months', 'Deposite', 'Expenses', 'Due/Give']];
+
+            @foreach($yearly as $year)
+            carveData.push(['{{ $year->month }}', {{ $year->total_collection }}, {{ $year->total_cost }}, {{ $year->amount_left }}]);
+
+            @endforeach
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable(carveData);
+
+                var options = {
+                    title: 'Collection - Expense',
+                    curveType: 'function',
+                    legend: {position: 'bottom'},
+                    colors: ['#4CAF50', '#F44336', '#00bcd4'],
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
                 chart.draw(data, options);
             }
         </script>
