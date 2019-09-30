@@ -28,7 +28,8 @@
                     </div>
 
                     <div class="card-action">
-                        <a href="https://github.com/jnahian/Meal-Manager" class="btn blue"><span class="material-icons">link</span> Meal-Manager</a>
+                        <a href="https://github.com/jnahian/Meal-Manager" class="btn blue" target="_blank"><span
+                                class="material-icons">link</span> Meal-Manager</a>
                     </div>
                 </div>
             </div>
