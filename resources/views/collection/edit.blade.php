@@ -14,7 +14,8 @@
                     <div class="card-title">{{ $title }}</div>
                     <div class="row">
                         <div class="input-field col m4 s12">
-                            <input type="text" name="date" id="date" class="datepicker validate" readonly value="{{ $collection->date ? $collection->date->format("M d, Y") : "" }}">
+                            <input type="text" name="date" id="date" class="datepicker validate" readonly
+                                   value="{{ $collection->date ? $collection->date->format("Y-m-d") : "" }}">
                             <label for="date">Date <span class="red-text text-lighten-3">*</span></label>
                         </div>
 

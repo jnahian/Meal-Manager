@@ -41,9 +41,9 @@ class Reports extends Model
 //            foreach ( $reports as $report ) {
 //                foreach ( $users as $user ) {
 //                    if ( array_key_exists( $user, $reports ) ) {
-//                        $repData[$report->date->format( 'd-M-Y' )][$report->user_id] = $report->toArray();
+//                        $repData[$report->date->format( 'Y-m-d' )][$report->user_id] = $report->toArray();
 //                    } else {
-//                        $repData[$report->date->format( 'd-M-Y' )][$user] = [];
+//                        $repData[$report->date->format( 'Y-m-d' )][$user] = [];
 //                    }
 //                }
 //
@@ -80,8 +80,8 @@ class Reports extends Model
                     $date   = $carbon->toDateString();
             
                     $meals = $user->meals()->where( 'date', $date )->first();
-            
-                    $data['meals'][$carbon->format( 'd-M-Y' )][$user->id] = $meals ? $meals->toArray() : [ 'meal' => 0, 'guest' => 0, 'total' => 0 ];
+
+                    $data['meals'][$carbon->format('Y-m-d')][$user->id] = $meals ? $meals->toArray() : ['meal' => 0, 'guest' => 0, 'total' => 0];
                 }
         
                 $data['totals'][$user->id] = $user->meals()

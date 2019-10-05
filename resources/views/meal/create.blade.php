@@ -13,7 +13,8 @@
                     <div class="card-title">{{ $title }}</div>
                     <div class="row">
                         <div class="input-field col m4 s12">
-                            <input type="text" name="date" id="date" class="datepicker validate" readonly>
+                            <input type="text" name="date" id="date" class="datepicker validate" readonly
+                                   value="{{ date('Y-m-d') }}">
                             <label for="date">Date <span class="red-text text-lighten-3">*</span></label>
                         </div>
                     </div>
