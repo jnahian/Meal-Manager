@@ -28,7 +28,8 @@
                         </div>
 
                         <div class="input-field inline">
-                            <button type="submit" name="s" value="1" class="btn green"><span class="material-icons">search</span>Search</button>
+                            <button type="submit" name="s" value="1" class="btn green"><span class="material-icons">search</span>Search
+                            </button>
                         </div>
                         {!! Form::close() !!}
                     </div>
@@ -55,6 +56,7 @@
                                     $total_collection = 0;
                                     $total_total_cost = 0;
                                     $total_amount_left = 0;
+                                    $total_meal = 0;
                                 @endphp
                                 @if($msr)
                                     <tbody>
@@ -62,6 +64,7 @@
 
                                         @php
                                             $total_collection += $rep->collection;
+                                            $total_meal += $rep->meal;
                                             $total_total_cost += $rep->total_cost;
                                             $total_amount_left += $rep->amount_left;
                                         @endphp
@@ -69,7 +72,7 @@
                                         <tr>
                                             <td>{{ $rep->user->name }}</td>
                                             <td class="center-align">{{ number_format($rep->collection) }}</td>
-                                            <td class="center-align">{{ $rep->meal }}</td>
+                                            <td class="center-align">{{ number_format($rep->meal, 1) }}</td>
                                             <td class="center-align">{{ number_format($rep->meal_rate, 2) }}</td>
                                             <td class="center-align">{{ number_format($rep->meal_cost, 2) }}</td>
                                             <td class="center-align">{{ number_format($rep->others_cost, 2) }}</td>
@@ -79,10 +82,13 @@
                                     @endforeach
                                     <tr>
                                         <th class="right-align">Total =</th>
-                                        <td class="center-align">{{ number_format($total_collection, 2) }}</td>
-                                        <td colspan="4"></td>
-                                        <td class="center-align">{{ number_format($total_total_cost, 2) }}</td>
-                                        <td class="center-align">{{ number_format($total_amount_left, 2) }}</td>
+                                        <th class="center-align">{{ number_format($total_collection, 2) }}</th>
+                                        <th class="center-align">{{ number_format($total_meal) }}</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th class="center-align">{{ number_format($total_total_cost, 2) }}</th>
+                                        <th class="center-align">{{ number_format($total_amount_left, 2) }}</th>
                                     </tr>
                                     </tbody>
                                 @else
@@ -97,7 +103,8 @@
                     @endif
                 </div>
                 <div class="card-action center-align">
-                    <a href="javascript:" onclick="PrintMe('printable')" class="btn-small orange hidden-print"><i class="material-icons left">print</i>Print</a>
+                    <a href="javascript:" onclick="PrintMe('printable')" class="btn-small orange hidden-print"><i
+                                class="material-icons left">print</i>Print</a>
                 </div>
             </div>
         </div>
