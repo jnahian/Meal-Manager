@@ -7,7 +7,7 @@
                 @csrf
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Sign In</span>
+                        <span class="card-title">Login</span>
 
 
                         <div class="row">
@@ -43,9 +43,9 @@
                         </p>
                     </div>
                     <div class="card-action center-align">
-                        <button type="submit" class="btn green btn-large btn-large">
+                        <button type="submit" class="btn green btn-large">
                             <i class="material-icons">lock_open</i>
-                            Sign In
+                            Login
                         </button>
 
                         {{-- @if (Route::has('password.request'))

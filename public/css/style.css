@@ -382,6 +382,10 @@ nav .brand-logo {
     text-transform: uppercase;
 }
 
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #2196f3 !important;
+}
+
 .print-only {
     display: none;
 }

@@ -15,7 +15,7 @@
 
         <li>
             <a href="{{ route('login') }}">
-                <i class="material-icons">lock_open</i>Sign In</a>
+                <i class="material-icons">lock_open</i>Login</a>
         </li>
     @else
         <li>
@@ -57,7 +57,7 @@
         <li class="logout-wrap">
             <a href="javascript:" onclick="jLogoutConfirm(this)"> {{-- event.preventDefault(); document.getElementById('logout-form').submit(); --}}
                 <i class="material-icons">power_settings_new</i>
-                Sign Out
+                Logout
             </a>
         </li>
     @endguest

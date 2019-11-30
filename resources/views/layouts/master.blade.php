@@ -37,7 +37,7 @@
                 @guest
                     <li>
                         <a href="{{ route('login') }}">
-                            <i class="material-icons">lock_open</i>Sign In</a>
+                            <i class="material-icons">lock_open</i>Login</a>
                     </li>
                 @else
                     <li>
@@ -57,7 +57,7 @@
                             <li><a href="{{ route('user.show', Auth::id()) }}"><i class="material-icons">account_circle</i> Profile</a></li>
                             <li><a href="{{ route('user.change-password', Auth::id()) }}"><i class="material-icons">vpn_key</i> Change Password</a></li>
                             <li class="divider"></li>
-                            <li><a href="javascript:" onclick="jLogoutConfirm(this)"><i class="material-icons">power_settings_new</i> Sign Out</a></li>
+                            <li><a href="javascript:" onclick="jLogoutConfirm(this)"><i class="material-icons">power_settings_new</i> Logout</a></li>
                         </ul>
                     </li>
                     {{-- <li>
@@ -69,7 +69,7 @@
                     {{--<li class="logout-wrap">
                         <a href="javascript:" onclick="jLogoutConfirm(this)"> --}}{{-- event.preventDefault(); document.getElementById('logout-form').submit(); --}}{{--
                             <i class="material-icons">power_settings_new</i>
-                            Sign Out
+                            Logout
                         </a>
                     </li>--}}
                 @endguest
@@ -82,8 +82,8 @@
         <div class="confirm-logout" onclick="jLogoutCancel(this)">
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
-                <h3>Are you sure? You want to sign out.</h3>
-                <button type="submit" class="btn orange darken-3"><span class="material-icons">power_settings_new</span> Sign Out</button>
+                <h3>Are you sure? You want to Logout.</h3>
+                <button type="submit" class="btn orange darken-3"><span class="material-icons">power_settings_new</span> Logout</button>
                 <button type="button" class="btn grey" onclick="jLogoutCancel(this)"><span class="material-icons">close</span> Cancel</button>
             </form>
         </div>

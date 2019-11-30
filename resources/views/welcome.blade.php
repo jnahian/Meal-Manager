@@ -12,7 +12,7 @@
         <div class="row center">
             <a href="{{ route('login') }}" class="btn waves-effect waves-light orange">
                 <i class="material-icons">lock_open</i>
-                Sign In
+                Login
             </a>
         </div>
     </div>
