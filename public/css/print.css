@@ -16,4 +16,16 @@
     .center-align {
         text-align: center;
     }
+
+    .valign-top {
+        vertical-align: top;
+    }
+
+    .no-border, .no-border td, .no-border th {
+        border: none !important;
+    }
+
+    .print-only {
+        display: block;
+    }
 }

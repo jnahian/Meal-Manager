@@ -9,7 +9,7 @@
 
             <div class="card">
                 @php
-                    $total_meal = 0;
+                    $total_meal = 0
                 @endphp
                 @include('elements.preloader')
                 <div class="card-content">
@@ -35,6 +35,8 @@
 
                     @if($reports)
                         <div id="printable">
+                            @include('elements.printHeader')
+
                             @if($reports)
 
                                 <table class="striped responsive-table">
@@ -63,9 +65,9 @@
                                         <th class="right-align">Total =</th>
 
                                         @foreach($reports['totals'] as $i => $total)
-                                            <td class="center-align">
+                                            <th class="center-align">
                                                 {{ number_format($total['total_total']) }} ({{ number_format($total['total_guest']) }})
-                                            </td>
+                                            </th>
                                         @endforeach
                                     </tr>
                                     </tbody>

@@ -9,7 +9,7 @@
 
             <div class="card">
                 @php
-                    $total_meal = 0;
+                    $total_meal = 0
                 @endphp
                 @include('elements.preloader')
                 <div class="card-content">
@@ -36,8 +36,7 @@
 
                     @if($msr)
                         <div id="printable">
-                            <h5 class="center">Monthly Summery Report of <i>{{ $date }}</i></h5>
-                            <hr>
+                            @include('elements.printHeader')
                             <table class="responsive-table striped">
                                 <thead>
                                 <tr>
@@ -56,7 +55,7 @@
                                     $total_collection = 0;
                                     $total_total_cost = 0;
                                     $total_amount_left = 0;
-                                    $total_meal = 0;
+                                    $total_meal = 0
                                 @endphp
                                 @if($msr)
                                     <tbody>
@@ -66,7 +65,7 @@
                                             $total_collection += $rep->collection;
                                             $total_meal += $rep->meal;
                                             $total_total_cost += $rep->total_cost;
-                                            $total_amount_left += $rep->amount_left;
+                                            $total_amount_left += $rep->amount_left
                                         @endphp
 
                                         <tr>
