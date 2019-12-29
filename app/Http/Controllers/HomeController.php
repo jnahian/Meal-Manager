@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\MonthlySummery;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -27,36 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $title = "Monthly Summery of " . date('F, Y');
+        $title = "Monthly Cost Report of " . date('Y');
 
-        $msr = MonthlySummery::where('year', date('Y'))
-            ->where('month', date('m'))
-            ->where('total_cost', '>', 0)
-            ->orderBy('user_id')->get();
+        $yearlyMeals = MonthlySummery::getYearlyMealSummery();
 
-
-        $total = MonthlySummery::where('year', date('Y'))
-            ->where('month', date('m'))
-            ->where('total_cost', '>', 0)
-            ->select(
-                DB::raw("year, month, sum(collection) total_collection, sum(total_cost) total_cost, sum(amount_left) amount_left")
-            )
-            ->groupBy('year', 'month')
-            ->orderBy('user_id')
-            ->first();
-
-        $yearly = MonthlySummery::where('year', date('Y'))
-            ->where('total_cost', '>', 0)
-            ->select(
-                DB::raw("year, month, sum(collection) total_collection, sum(total_cost) total_cost, sum(amount_left) amount_left")
-            )
-            ->groupBy('year', 'month')
-            ->orderBy('month')
-            ->get();
-
-//        dd($yearly->pluck('total_cost'));
-
-        return view('home', compact('title', 'msr', 'total', 'yearly'));
+        return view('home', compact('title', 'yearlyMeals'));
     }
 
     /**

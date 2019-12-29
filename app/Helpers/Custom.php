@@ -130,12 +130,12 @@ if (!function_exists('year_list')) {
 }
 
 if (!function_exists('month_list')) {
-    function month_list()
+    function month_list($format = "F")
     {
         $months = ['' => "নির্বাচন করুন"];
 
         for ($i = 1; $i <= 12; $i++) {
-            $name       = Carbon::createFromFormat('m', $i)->format("F");
+            $name       = Carbon::createFromFormat('m', $i)->format($format);
             $months[$i] = $name;
         }
 
@@ -144,9 +144,9 @@ if (!function_exists('month_list')) {
 }
 
 if (!function_exists('month_name')) {
-    function month_name($month_no = null)
+    function month_name($month_no = null, $format = "F")
     {
-        $months = month_list();
+        $months = month_list($format);
 
         return array_key_exists($month_no, $months) ? $months[$month_no] : false;
     }

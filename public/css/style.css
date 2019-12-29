@@ -303,7 +303,8 @@ td, th {
 }
 
 #columnchart_material, #curve_chart {
-    height: 400px;
+    height: 500px;
+    width: 100%;
 }
 
 .card {
