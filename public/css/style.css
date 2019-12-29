@@ -64,8 +64,12 @@ nav ul li .material-icons {
     color: #333;
 }
 
+.side-nav li.active, .side-nav li:hover {
+    background: #2196f3 !important;
+}
+
 .side-nav li.active a, .side-nav li:hover a {
-    color: #43a047;
+    color: #fff;
 }
 
 .page-footer {

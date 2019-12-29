@@ -151,3 +151,10 @@ if (!function_exists('month_name')) {
         return array_key_exists($month_no, $months) ? $months[$month_no] : false;
     }
 }
+
+if (!function_exists('isActiveMenu')) {
+    function isActiveMenu($routeName)
+    {
+        return Request::route()->getName() == $routeName ? 'active' : '';
+    }
+}
