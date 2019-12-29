@@ -47,31 +47,22 @@ class ReportsController extends Controller
 
     public function monthly_meal_report(Request $request)
     {
-        $title = "Monthly Meal Report";
-
-        $reports = Reports::getMonthlyMealReaport($request);
-
-        if ($request->s)
-            $print_title = "Monthly Meal Report of the month of " . month_name($request->month) . ", $request->year";
-        else
-            $print_title = "";
-
+        $year        = $request->has('year') ? $request->year : date('Y');
+        $month       = $request->has('month') ? $request->month : date('n');
+        $reports     = Reports::getMonthlyMealReaport($year, $month);
+        $print_title = "Monthly Meal Report of the month of " . month_name($month) . ", {$year}";
+        $title       = $print_title;
         return view('reports.monthly-meal-report', compact('title', 'reports', 'print_title'));
     }
 
     public function monthly_all_report(Request $request)
     {
-        $title = "Monthly Report";
-
-        if ($request->s) {
-            $date        = Carbon::parse("{$request->year}-{$request->month}-01")->format('F, Y');
-            $msr         = MonthlySummery::where('year', $request->year)->where('month', $request->month)->get();
-            $print_title = "Monthly Summery Report of the month of " . month_name($request->month) . ", $request->year";
-        } else {
-            $date        = "";
-            $msr         = false;
-            $print_title = "";
-        }
+        $year        = $request->has('year') ? $request->year : date('Y');
+        $month       = $request->has('month') ? $request->month : date('n');
+        $date        = Carbon::parse("{$year}-{$month}-01")->format('F, Y');
+        $msr         = MonthlySummery::where('year', $year)->where('month', $month)->get();
+        $print_title = "Monthly Summery Report of the month of " . month_name($month) . ", $year";
+        $title       = $print_title;
 
         return view('reports.monthly-all-report', compact('title', 'msr', 'date', 'print_title'));
     }

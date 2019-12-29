@@ -57,42 +57,38 @@ class Reports extends Model
 //        return FALSE;
 //    }
 
-    public static function getMonthlyMealReaport($request)
+    public static function getMonthlyMealReaport($year, $month)
     {
-        if ($request->s) {
-            $users = User::all();
+        $users = User::all();
 
-            $firstDayofMonth = "{$request->year}-{$request->month}-01";
+        $firstDayofMonth = "{$year}-{$month}-01";
 
-            $carbon = Carbon::parse();
-            $days   = $carbon->daysInMonth;
+        $carbon = Carbon::parse();
+        $days   = $carbon->daysInMonth;
 
-            $lastDayofMonth = "{$request->year}-{$request->month}-{$days}";
+        $lastDayofMonth = "{$year}-{$month}-{$days}";
 
-            $data = [];
+        $data = [];
 
-            foreach ($users as $user) {
+        foreach ($users as $user) {
 
-                $data['users'][$user->id] = $user->toArray();
+            $data['users'][$user->id] = $user->toArray();
 
-                for ($i = 1; $i <= $days; $i++) {
-                    $carbon = Carbon::parse("{$request->year}-{$request->month}-$i");
-                    $date   = $carbon->toDateString();
+            for ($i = 1; $i <= $days; $i++) {
+                $carbon = Carbon::parse("{$year}-{$month}-$i");
+                $date   = $carbon->toDateString();
 
-                    $meals = $user->meals()->where('date', $date)->first();
+                $meals = $user->meals()->where('date', $date)->first();
 
-                    $data['meals'][$carbon->format('d-m-Y')][$user->id] = $meals ? $meals->toArray() : ['meal' => 0, 'guest' => 0, 'total' => 0];
-                }
-
-                $data['totals'][$user->id] = $user->meals()
-                                                  ->select(DB::raw('sum(meal) total_meal ,sum(guest) total_guest, sum(total) total_total'))
-                                                  ->whereBetween('date', [$firstDayofMonth, $lastDayofMonth])
-                                                  ->first()->toArray();
+                $data['meals'][$carbon->format('d-m-Y')][$user->id] = $meals ? $meals->toArray() : ['meal' => 0, 'guest' => 0, 'total' => 0];
             }
 
-            return $data;
+            $data['totals'][$user->id] = $user->meals()
+                                              ->select(DB::raw('sum(meal) total_meal ,sum(guest) total_guest, sum(total) total_total'))
+                                              ->whereBetween('date', [$firstDayofMonth, $lastDayofMonth])
+                                              ->first()->toArray();
         }
 
-        return false;
+        return $data;
     }
 }

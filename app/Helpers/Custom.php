@@ -117,7 +117,7 @@ if (!function_exists('income_expense')) {
 if (!function_exists('year_list')) {
     function year_list()
     {
-        $years = ['' => "নির্বাচন করুন"];
+        $years = ['' => "Choose"];
 
         $current = date('Y');
 
@@ -132,7 +132,7 @@ if (!function_exists('year_list')) {
 if (!function_exists('month_list')) {
     function month_list($format = "F")
     {
-        $months = ['' => "নির্বাচন করুন"];
+        $months = ['' => "Choose"];
 
         for ($i = 1; $i <= 12; $i++) {
             $name       = Carbon::createFromFormat('m', $i)->format($format);

@@ -7,30 +7,15 @@
 
         <div class="col m9 s12">
 
+            @include('elements.search-wizard')
+
             <div class="card">
                 @php
                     $total_meal = 0
                 @endphp
-                @include('elements.preloader')
                 <div class="card-content">
                     <div class="card-title">
                         {{ $title }}
-                    </div>
-                    <div class="row center-align">
-                        {!! Form::open(['route' => 'report.monthly-meal', 'method' => 'GET']) !!}
-                        <div class="input-field inline">
-                            {!! Form::select('year', year_list(), old('year', date('Y'))) !!}
-                            <label for="from">Year </label>
-                        </div>
-                        <div class="input-field inline">
-                            {!! Form::select('month', month_list(), old('month', date('n'))) !!}
-                            <label for="from">Month </label>
-                        </div>
-
-                        <div class="input-field inline">
-                            <button type="submit" name="s" value="1" class="btn green"><span class="material-icons">search</span>Search</button>
-                        </div>
-                        {!! Form::close() !!}
                     </div>
 
                     @if($reports)
