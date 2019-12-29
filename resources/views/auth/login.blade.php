@@ -1,8 +1,26 @@
 @extends('layouts.master')
 
 @section('content')
+    <style>
+        .row.justify-content-center {
+            height: calc(100vh - 150px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-form {
+            width: 40vw;
+        }
+
+        @media (max-width: 767px) {
+            .login-form {
+                width: 90vw;
+            }
+        }
+    </style>
     <div class="row justify-content-center">
-        <div class="col m6 offset-m3 s12">
+        <div class="login-form">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="card">
