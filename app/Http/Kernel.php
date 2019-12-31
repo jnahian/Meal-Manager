@@ -6,6 +6,7 @@ use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\CheckForMaintenanceMode;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\HasUserPermission;
+use App\Http\Middleware\OnlyMe;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
@@ -41,7 +42,7 @@ class Kernel extends HttpKernel
         ConvertEmptyStringsToNull::class,
         TrustProxies::class,
     ];
-    
+
     /**
      * The application's route middleware groups.
      *
@@ -57,13 +58,13 @@ class Kernel extends HttpKernel
             VerifyCsrfToken::class,
             SubstituteBindings::class,
         ],
-        
+
         'api' => [
             'throttle:60,1',
             'bindings',
         ],
     ];
-    
+
     /**
      * The application's route middleware.
      *
@@ -82,8 +83,9 @@ class Kernel extends HttpKernel
         'throttle'      => ThrottleRequests::class,
         'verified'      => EnsureEmailIsVerified::class,
         'hasPerm'       => HasUserPermission::class,
+        'onlyMe'        => OnlyMe::class,
     ];
-    
+
     /**
      * The priority-sorted list of middleware.
      *

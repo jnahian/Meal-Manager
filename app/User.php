@@ -26,14 +26,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
+
     public static function getDropdown()
     {
-        return self::orderBy( 'name' )->get( [ 'name', 'id' ] )->pluck( 'name', 'id' )->toArray();
+        return self::orderBy('name')->get(['name', 'id'])->pluck('name', 'id')->toArray();
     }
-    
+
     public function meals()
     {
-        return $this->hasMany( Meal::class );
+        return $this->hasMany(Meal::class);
+    }
+
+    public function permissions()
+    {
+        return $this->hasMany(UserPermission::class);
     }
 }

@@ -74,6 +74,32 @@
                     </div>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Permissions</div>
+                    <table class="striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Last Update</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($user->permissions()->latest()->get() as $permission)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $permission->from ? $permission->from->format('d M, Y') : "" }}</td>
+                                <td>{{ $permission->to ? $permission->to->format('d M, Y') : "" }}</td>
+                                <td>{{ $permission->updated_at->format('d M, Y') }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

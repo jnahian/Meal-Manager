@@ -13,3 +13,4 @@ yarn-error.log
 *.xml
 */yml
 */.zip
+.DS_Store

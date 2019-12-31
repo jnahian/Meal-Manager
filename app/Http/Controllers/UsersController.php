@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\UserPermission;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -16,7 +18,8 @@ class UsersController extends Controller
     
     public function __construct()
     {
-        $this->middleware( 'hasPerm', [ 'except' => [ 'index', 'show' ] ] );
+        $this->middleware('hasPerm', ['except' => ['index', 'show', 'change_password', 'update_password']]);
+        $this->middleware('onlyMe', ['only' => 'change_password', 'update_password']);
     }
     
     /**
@@ -169,22 +172,33 @@ class UsersController extends Controller
     
     public function update_permission( Request $request, User $user )
     {
-        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
-        
-        $request->validate( [
-            'date_from' => 'required|date',
-            'date_to'   => 'required|date',
-        ] );
-        
+        $response = ['success' => false, 'msg' => '', 'redirect' => false];
+
+        $request->validate([
+                               'date_from' => 'required|date',
+                               'date_to'   => 'required|date',
+                           ]);
+
+        DB::beginTransaction();
         try {
-            $user->perm_from = Carbon::parse( $request->date_from )->toDateString();
-            $user->perm_to   = Carbon::parse( $request->date_to )->toDateString();
+
+            $permission          = new UserPermission();
+            $permission->user_id = $user->id;
+            $permission->from    = Carbon::parse($request->date_from)->toDateString();
+            $permission->to      = Carbon::parse($request->date_to)->toDateString();
+            $permission->save();
+
+            $user->perm_from = Carbon::parse($request->date_from)->toDateString();
+            $user->perm_to   = Carbon::parse($request->date_to)->toDateString();
             $user->save();
-            
-            $response['success']  = TRUE;
+
+            DB::commit();
+
+            $response['success']  = true;
             $response['redirect'] = $request->previous;
             $response['msg']      = "User Permission Changed Successfully!";
         } catch ( Exception $exception ) {
+            DB::rollBack();
             $response['msg'] = $exception->getMessage();
         }
         return response()->json( $response );

@@ -1,6 +1,5 @@
 <?php
 
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use MirazMac\BanglaString\BanglaString;
@@ -15,10 +14,22 @@ if (!function_exists('hasPermission')) {
 
             if ($user->role == 1) return true;
 
-            $hasPerm = User::where('id', $user->id)->where('perm_from', '<=', $today)->where('perm_to', '>=', $today)->first();
+//            $hasPerm = User::where('id', $user->id)->where('perm_from', '<=', $today)->where('perm_to', '>=', $today)->first();
+            $hasPerm = $user->permissions()->where('from', '<=', $today)->where('to', '>=', $today)->first();
 
             if ($hasPerm) return true;
 
+        }
+
+        return false;
+    }
+}
+if (!function_exists('isAdmin')) {
+    function isAdmin()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->role == 1) return true;
         }
 
         return false;
