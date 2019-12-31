@@ -97,8 +97,7 @@
 
 @push('page-js')
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    @if($yearlyMeals)
+    @if(count($yearlyMeals['data']))
         <script type="text/javascript">
             var colors = ['#4CAF50', '#F44336', '#00bcd4', '#a730d4'];
             var rows = [['Months']];
@@ -107,7 +106,7 @@
                 rows[0].push("{{$name}}");
                     @endforeach
 
-                    @foreach($yearlyMeals['data'] as $month => $year)
+                    @foreach(data_get($yearlyMeals, 'data', []) as $month => $year)
             var rowData = ['{{ month_name($month, 'M') }}'];
             @foreach($year as $row)
             rowData.push({{ $row['total_cost'] }});
@@ -145,7 +144,7 @@
                 carveData[0].push("{{$name}}");
                     @endforeach
 
-                    @foreach($yearlyMeals['data'] as $month => $year)
+                    @foreach(data_get($yearlyMeals, 'data', []) as $month => $year)
             var rowData = ['{{ month_name($month, 'M') }}'];
             @foreach($year as $row)
             rowData.push({{ $row['meals'] }});
