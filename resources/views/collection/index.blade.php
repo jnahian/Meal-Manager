@@ -55,18 +55,25 @@
                         </thead>
                         <tbody>
                         @if($collections->total())
+                            @php
+                                $totalCollection = 0
+                            @endphp
                             @foreach($collections as $collection)
+                                @php
+                                    $totalCollection += $collection->amount
+                                @endphp
                                 <tr>
                                     <td>{{ ($loop->index + 1) }}</td>
                                     <td>{{ $collection->date->format('d M, Y') }}</td>
                                     <td>{{ $collection->user->name }}</td>
-                                    <td class="right-align">{{ $collection->amount }}</td>
+                                    <td class="center-align">{{ number_format($collection->amount) }}</td>
                                     <td class="center-align">
                                         {!! status($collection->status, TRUE) !!}
                                     </td>
                                     <td class="center-align">{{ $collection->updated_at->format('d M, Y h:i A') }}</td>
                                     <td class="center-align delete-wrap">
-                                        <a href="{{ route('collection.show', $collection->id) }}" class="btn-action btn-small waves-effect waves-light green tooltipped" data-position="top"
+                                        <a href="{{ route('collection.show', $collection->id) }}" class="btn-action btn-small waves-effect waves-light green tooltipped"
+                                           data-position="top"
                                            data-tooltip="Show Details">
                                             <span class="material-icons">remove_red_eye</span>
                                         </a>
@@ -84,7 +91,8 @@
                                             <div class="delete-form" onclick="jCancelDelete(this)">
                                                 {!! Form::open(['route' => ['collection.destroy', $collection->id], 'method' => 'DELETE']) !!}
                                                 <h3>You want to delete this. Are you sure?</h3>
-                                                <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete</button>
+                                                <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete
+                                                </button>
                                                 <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
                                                 {!! Form::close() !!}
                                             </div>
@@ -92,6 +100,12 @@
                                     </td>
                                 </tr>
                             @endforeach
+
+                            <tr>
+                                <th colspan="3"></th>
+                                <th class="center-align">{{ number_format($totalCollection) }}</th>
+                                <th colspan="3"></th>
+                            </tr>
                         @else
                             <tr>
                                 <td class="center-align" colspan="7">Collection not found..</td>

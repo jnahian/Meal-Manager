@@ -57,23 +57,31 @@
                         </thead>
                         <tbody>
                         @if($expenses->total())
+                            @php
+                                $totalExpense = 0
+                            @endphp
                             @foreach($expenses as $expense)
+                                @php
+                                    $totalExpense += $expense->amount
+                                @endphp
                                 <tr>
                                     <td>{{ ($loop->index + 1) }}</td>
                                     <td>{{ $expense->date->format('d M, Y') }}</td>
                                     <td>{{ $expense->user->name }}</td>
                                     <td>{{ $expense->purpose }}</td>
-                                    <td class="right-align">{{ $expense->amount }}</td>
+                                    <td class="center-align">{{ number_format($expense->amount) }}</td>
                                     <td class="center-align">
                                         {!! status($expense->status, TRUE) !!}
                                     </td>
                                     <td class="center-align delete-wrap">
-                                        <a href="{{ route('expense.show', $expense->id) }}" class="btn-action btn-small waves-effect waves-light green tooltipped" data-position="top"
+                                        <a href="{{ route('expense.show', $expense->id) }}" class="btn-action btn-small waves-effect waves-light green tooltipped"
+                                           data-position="top"
                                            data-tooltip="Show Details">
                                             <span class="material-icons">remove_red_eye</span>
                                         </a>
                                         @if(hasPermission())
-                                            <a href="{{ route('expense.edit', $expense->id) }}" class="btn-action btn-small waves-effect waves-light cyan tooltipped" data-position="top"
+                                            <a href="{{ route('expense.edit', $expense->id) }}" class="btn-action btn-small waves-effect waves-light cyan tooltipped"
+                                               data-position="top"
                                                data-tooltip="Change">
                                                 <span class="material-icons">edit</span>
                                             </a>
@@ -86,7 +94,8 @@
                                             <div class="delete-form" onclick="jCancelDelete(this)">
                                                 {!! Form::open(['route' => ['expense.destroy', $expense->id], 'method' => 'DELETE']) !!}
                                                 <h3>You want to delete this. Are you sure?</h3>
-                                                <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete</button>
+                                                <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete
+                                                </button>
                                                 <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
                                                 {!! Form::close() !!}
                                             </div>
@@ -94,6 +103,11 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            <tr>
+                                <th colspan="4"></th>
+                                <th class="center-align">{{ number_format($totalExpense) }}</th>
+                                <th colspan="2"></th>
+                            </tr>
                         @else
                             <tr>
                                 <td class="center-align" colspan="7">Expense not found..</td>
