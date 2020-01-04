@@ -83,8 +83,8 @@ if (!function_exists('status')) {
     }
 }
 
-if (!function_exists('Expense_types')) {
-    function Expense_types($val = null, $badge = false)
+if (!function_exists('expense_types')) {
+    function expense_types($val = null, $badge = false)
     {
         $status = [
             'R' => "Regular",

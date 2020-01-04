@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="input-field col m4 s12">
-                            {!! Form::select('type', Expense_types()); !!}
+                            {!! Form::select('type', expense_types()); !!}
                             <label for="type">Type <span class="red-text text-lighten-3">*</span></label>
                         </div>
                     </div>

@@ -36,12 +36,12 @@
                         <tr>
                             <th>Type of Expense</th>
                             <th>:</th>
-                            <td>{{ $expense->type }}</td>
+                            <td>{{ expense_types($expense->type) }}</td>
                         </tr>
                         <tr>
                             <th>Remarks</th>
                             <th>:</th>
-                            <td>{{ $expense->remarks }}</td>
+                            <td>{{ nl2br($expense->remarks) }}</td>
                         </tr>
                         <tr>
                             <th>Status</th>
