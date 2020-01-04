@@ -41,7 +41,7 @@
                         <tr>
                             <th>Remarks</th>
                             <th>:</th>
-                            <td>{{ nl2br($expense->remarks) }}</td>
+                            <td>{!! nl2br($expense->remarks) !!}</td>
                         </tr>
                         <tr>
                             <th>Status</th>
