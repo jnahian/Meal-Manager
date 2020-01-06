@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'name' => env( 'APP_NAME', 'Laravel' ),
+    'name'    => env('APP_NAME', 'Laravel'),
+    'version' => 1.47,
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ return [
     |
     */
 
-    'env' => env( 'APP_ENV', 'production' ),
+    'env' => env('APP_ENV', 'production'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ return [
     |
     */
 
-    'debug' => env( 'APP_DEBUG', false ),
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,9 +53,9 @@ return [
     |
     */
 
-    'url' => env( 'APP_URL', 'http://localhost' ),
+    'url' => env('APP_URL', 'http://localhost'),
 
-    'asset_url' => env( 'ASSET_URL', null ),
+    'asset_url' => env('ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -119,7 +120,7 @@ return [
     |
     */
 
-    'key' => env( 'APP_KEY' ),
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 
