@@ -29,14 +29,14 @@
                         </div>
 
                         <div class="input-field col m4 s12">
-                            <input type="number" min="0" name="amount" id="amount" class="validate right-align">
+                            <input type="number" min="0" name="amount" id="amount" placeholder="0.00" class="validate right-align">
                             <label for="amount">Amount <span class="red-text text-lighten-3">*</span></label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col m12 s12">
-                            <textarea id="remarks" name="remarks" class="materialize-textarea" data-length="200"></textarea>
+                            <textarea id="remarks" name="remarks" class="materialize-textarea" placeholder="Write something about the collection" data-length="200"></textarea>
                             <label for="remarks">Remarks</label>
                         </div>
                     </div>

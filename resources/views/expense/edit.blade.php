@@ -31,7 +31,8 @@
                         </div>
 
                         <div class="input-field col m4 s12">
-                            <input type="number" min="0" name="amount" id="amount" class="validate right-align" value="{{ $expense->amount ? $expense->amount : "" }}">
+                            <input type="number" min="0" name="amount" id="amount" class="validate right-align" value="{{ $expense->amount ? $expense->amount : "" }}"
+                                   placeholder="0.00">
                             <label for="amount">Amount of Expense <span class="red-text text-lighten-3">*</span></label>
                         </div>
                     </div>
@@ -39,7 +40,8 @@
                     <div class="row">
 
                         <div class="input-field col m4 s12">
-                            <input type="text" name="purpose" id="purpose" class="validate" value="{{ $expense->purpose ? $expense->purpose : "" }}">
+                            <input type="text" name="purpose" id="purpose" class="validate" value="{{ $expense->purpose ? $expense->purpose : "" }}"
+                                   placeholder="Write expense details">
                             <label for="purpose">Expense Details <span class="red-text text-lighten-3">*</span></label>
                         </div>
 
@@ -51,7 +53,8 @@
 
                     <div class="row">
                         <div class="input-field col m12 s12">
-                            <textarea id="remarks" name="remarks" class="materialize-textarea" data-length="200">{{ $expense->remarks ? $expense->remarks : "" }}</textarea>
+                            <textarea id="remarks" name="remarks" class="materialize-textarea" data-length="200"
+                                      placeholder="Write remarks">{{ $expense->remarks ? $expense->remarks : "" }}</textarea>
                             <label for="remarks">Remarks</label>
                         </div>
                     </div>

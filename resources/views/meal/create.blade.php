@@ -22,18 +22,18 @@
                     @foreach($users as $id => $name)
                         <div class="row">
                             <div class="input-field col m4 s12">
-                                <input type="text" name="" id="member" class="" value="{{ $name }}" disabled>
+                                <input type="text" name="" id="member" class="" placeholder="{{ $name }}" disabled>
                                 <input type="hidden" name="user_id[{{$id}}]" value="{{ $id }}">
                                 <label for="member">Member <span class="red-text text-lighten-3">*</span></label>
                             </div>
 
                             <div class="input-field col m4 s6">
-                                <input type="text" name="meal[{{$id}}]" id="meal" class="validate" min="0" value="0">
+                                <input type="text" name="meal[{{$id}}]" id="meal" class="validate" min="0" placeholder="0">
                                 <label for="meal">Meal <span class="red-text text-lighten-3">*</span></label>
                             </div>
 
                             <div class="input-field col m4 s6">
-                                <input type="text" name="guest[{{$id}}]" id="guest" class="validate" min="0" value="0">
+                                <input type="text" name="guest[{{$id}}]" id="guest" class="validate" min="0" placeholder="0">
                                 <label for="guest">Guest</label>
                             </div>
                         </div>

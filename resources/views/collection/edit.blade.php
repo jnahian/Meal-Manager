@@ -30,14 +30,16 @@
                         </div>
 
                         <div class="input-field col m4 s12">
-                            <input type="number" min="0" name="amount" id="amount" class="validate right-align" value="{{ $collection->amount ? $collection->amount : "" }}">
+                            <input type="number" min="0" name="amount" id="amount" class="validate right-align" placeholder="0.00"
+                                   value="{{ $collection->amount ? $collection->amount : "" }}">
                             <label for="amount">Amount <span class="red-text text-lighten-3">*</span></label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col m12 s12">
-                            <textarea id="remarks" name="remarks" class="materialize-textarea" data-length="200">{{ $collection->remarks ? $collection->remarks : "" }}</textarea>
+                            <textarea id="remarks" name="remarks" class="materialize-textarea" placeholder="Write something about the collection"
+                                      data-length="200">{{ $collection->remarks ? $collection->remarks : "" }}</textarea>
                             <label for="remarks">Remarks</label>
                         </div>
                     </div>

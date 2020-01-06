@@ -62,6 +62,7 @@ nav ul li .material-icons {
 .side-nav li a {
     display: block;
     color: #333;
+    padding: 10px 15px;
 }
 
 .side-nav li.active, .side-nav li:hover {
@@ -130,18 +131,18 @@ nav ul li .material-icons {
 
 /* label color */
 .input-field label {
-    color: #0097a7;
+    color: #2296f3;
 }
 
 /* label focus color */
 .input-field input[type=text]:focus + label {
-    color: #0097a7;
+    color: #2296f3;
 }
 
 /* label underline focus color */
 .input-field input[type=text]:focus {
-    border-bottom: 1px solid #0097a7;
-    box-shadow: 0 1px 0 0 #0097a7;
+    border-bottom: 1px solid #2296f3;
+    box-shadow: 0 1px 0 0 #2296f3;
 }
 
 /* valid color */
@@ -393,6 +394,10 @@ nav .brand-logo {
 
 .print-only {
     display: none;
+}
+
+.collection .collection-item {
+    padding: 0 !important;
 }
 
 @media (max-width: 767px) {
