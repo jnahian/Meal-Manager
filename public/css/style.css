@@ -419,13 +419,18 @@ nav .brand-logo {
 }
 
 .dash-card .card-content a svg {
-    width: 80%;
+    width: 60%;
 }
 
 .dash-card .card-content a h4 {
     font-size: 16px;
     /*text-transform: uppercase;*/
     letter-spacing: 2px;
+    margin: 0;
+    height: 50px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 
 .dash-card .card:hover {
