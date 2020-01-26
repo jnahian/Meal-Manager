@@ -1,5 +1,5 @@
 <ul id="nav-mobile" class="sidenav">
-    <li class="disabled center-align cyan">
+    <li class="disabled center-align blue">
         <a href="javascript:" class="white-text">
             <img src="{{ asset("svg/dinner.svg") }}" class="side-nav-img" alt="{{ config('app.name', 'Laravel') }}">
             {{ config('app.name', 'Laravel') }}

@@ -1,4 +1,4 @@
-<div class="col m3 s12 hide-on-small-and-down">
+<div class="col m2 hide-on-small-and-down">
     <ul class="collection side-nav">
         <li class="collection-item {{ isActiveMenu('home')  }}"><a href="{{ route('home') }}"><i class="material-icons">dashboard</i> Dashboard</a></li>
         @if(hasPermission())

@@ -5,7 +5,7 @@
 
         @include('elements.sideNav')
 
-        <div class="col m9 s12">
+        <div class="col m10 s12">
 
             <div class="card">
                 @include('elements.preloader')
@@ -41,24 +41,24 @@
                                         @endif
                                     </td>
                                     <td class="center-align delete-wrap">
-                                        <a href="{{ route('user.show', $user->id) }}" class="btn btn-action waves-effect waves-light green tooltipped" data-position="top"
+                                        <a href="{{ route('user.show', $user->id) }}" class="btn-small btn-action waves-effect waves-light green tooltipped" data-position="top"
                                            data-tooltip="Show Details">
                                             <span class="material-icons">remove_red_eye</span>
                                         </a>
 
                                         @if(isAdmin())
-                                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-action waves-effect waves-light cyan tooltipped" data-position="top"
+                                            <a href="{{ route('user.edit', $user->id) }}" class="btn-small btn-action waves-effect waves-light cyan tooltipped" data-position="top"
                                                data-tooltip="Change">
                                                 <span class="material-icons">edit</span>
                                             </a>
 
-                                            <a href="{{ route('user.permission', $user->id) }}" class="btn btn-action waves-effect waves-light purple tooltipped"
+                                            <a href="{{ route('user.permission', $user->id) }}" class="btn-small btn-action waves-effect waves-light purple tooltipped"
                                                data-position="top"
                                                data-tooltip="Permission">
                                                 <span class="material-icons">lock_open</span>
                                             </a>
 
-                                            <a href="javascript:" class="btn btn-action waves-effect waves-light red tooltipped" data-position="top"
+                                            <a href="javascript:" class="btn-small btn-action waves-effect waves-light red tooltipped" data-position="top"
                                                data-tooltip="Delete" onclick="jShowDelete(this)">
                                                 <span class="material-icons">delete</span>
                                             </a>
@@ -66,9 +66,10 @@
                                             <div class="delete-form" onclick="jCancelDelete(this)">
                                                 {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE']) !!}
                                                 <h3>You want to delete this. Are you sure?</h3>
-                                                <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete
+                                                <button type="submit" class="btn-small red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span>
+                                                    Delete
                                                 </button>
-                                                <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
+                                                <button type="button" class="btn-small grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
                                                 {!! Form::close() !!}
                                             </div>
                                         @endif

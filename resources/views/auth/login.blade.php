@@ -61,7 +61,7 @@
                         </p>
                     </div>
                     <div class="card-action center-align">
-                        <button type="submit" class="btn green btn-large">
+                        <button type="submit" class="btn green">
                             <i class="material-icons">lock_open</i>
                             Login
                         </button>

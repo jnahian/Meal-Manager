@@ -5,7 +5,7 @@
 
         @include('elements.sideNav')
 
-        <div class="col m9 s12">
+        <div class="col m10 s12">
 
             <div class="card">
                 @include('elements.preloader')
@@ -31,6 +31,16 @@
                         </div>
 
                         <div class="input-field inline">
+                            <select name="t" id="type">
+                                <option value="" disabled selected>Choose Type</option>
+                                @foreach(expense_types() as $id => $name)
+                                    <option value="{{ $id }}">{{ $name }}</option>
+                                @endforeach
+                            </select>
+                            <label for="type">Type</label>
+                        </div>
+
+                        <div class="input-field inline">
                             <input id="from" name="from" type="text" class="datepicker">
                             <label for="from">Date From </label>
                         </div>
@@ -49,8 +59,9 @@
                             <th>#</th>
                             <th>Date</th>
                             <th>Member</th>
-                            <th>Expense Details</th>
-                            <th>Amount of Expense</th>
+                            <th>Details</th>
+                            <th>Type</th>
+                            <th>Amount</th>
                             <th class="center-align">Status</th>
                             <th class="center-align">Actions</th>
                         </tr>
@@ -69,9 +80,10 @@
                                     <td>{{ $expense->date->format('d M, Y') }}</td>
                                     <td>{{ $expense->user->name }}</td>
                                     <td>{{ $expense->purpose }}</td>
+                                    <td>{!! expense_types($expense->type, true) !!}</td>
                                     <td class="center-align">{{ number_format($expense->amount) }}</td>
                                     <td class="center-align">
-                                        {!! status($expense->status, TRUE) !!}
+                                        {!! status($expense->status, true) !!}
                                     </td>
                                     <td class="center-align delete-wrap">
                                         <a href="{{ route('expense.show', $expense->id) }}" class="btn-action btn-small waves-effect waves-light green tooltipped"
@@ -104,7 +116,7 @@
                                 </tr>
                             @endforeach
                             <tr>
-                                <th colspan="4"></th>
+                                <th colspan="5"></th>
                                 <th class="center-align">{{ number_format($totalExpense) }}</th>
                                 <th colspan="2"></th>
                             </tr>

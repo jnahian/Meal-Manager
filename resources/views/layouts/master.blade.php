@@ -21,7 +21,7 @@
         <div class="determinate" style="width: 0"></div>
     </div>
     <nav class="blue" role="navigation">
-        <div class="nav-wrapper container">
+        <div class="nav-wrapper container-fluid">
             <a id="logo-container" href="{{ url('/') }}" class="brand-logo">
                 <img src="{{ asset("svg/dinner.svg") }}" class="" alt="{{ config('app.name', 'Laravel') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -90,7 +90,7 @@
     </nav>
 </div>
 <div class="section grey lighten-5" id="index-banner">
-    <div class="container">
+    <div class="container-fluid">
 
         @yield('content')
 

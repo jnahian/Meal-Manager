@@ -5,7 +5,7 @@
 
         @include('elements.sideNav')
 
-        <div class="col m9 s12">
+        <div class="col m10 s12">
 
             @include('elements.search-wizard')
 
@@ -85,7 +85,7 @@
                     @endif
                 </div>
                 <div class="card-action center-align">
-                    <a href="javascript:" onclick="PrintMe('printable')" class="btn-small orange hidden-print"><i
+                    <a href="javascript:" onclick="PrintMe('printable')" class="btn orange hidden-print"><i
                                 class="material-icons left">print</i>Print</a>
                 </div>
             </div>

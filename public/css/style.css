@@ -51,6 +51,12 @@ nav ul li .material-icons {
     min-height: calc(100vh - 114px);
 }
 
+.btn {
+    min-width: 200px;
+    justify-content: center;
+    letter-spacing: 2px;
+}
+
 .btn .material-icons, .btn-large .material-icons, .side-nav .material-icons {
     margin-right: 10px;
 }
@@ -314,10 +320,17 @@ td, th {
 
 .card {
     /*min-height: 460px;*/
-    border: 1px solid #e0e0e0;
-    -webkit-box-shadow: 0px 0px 0px;
-    -moz-box-shadow: 0px 0px 0px;
-    box-shadow: 0px 0px 0px;
+    /*border: 1px solid #e0e0e0;*/
+    -webkit-box-shadow: 0px 0px 10px #0000002b;
+    -moz-box-shadow: 0px 0px 10px #0000002b;
+    box-shadow: 0px 0px 10px #0000002b;
+}
+
+.collection {
+    border: 0;
+    -webkit-box-shadow: 0px 0px 10px #0000002b;
+    -moz-box-shadow: 0px 0px 10px #0000002b;
+    box-shadow: 0px 0px 10px #0000002b;
 }
 
 .card .card-title {
@@ -400,6 +413,25 @@ nav .brand-logo {
     padding: 0 !important;
 }
 
+.dash-card .card-content a {
+    display: block;
+    text-align: center;
+}
+
+.dash-card .card-content a svg {
+    width: 80%;
+}
+
+.dash-card .card-content a h4 {
+    font-size: 16px;
+    /*text-transform: uppercase;*/
+    letter-spacing: 2px;
+}
+
+.dash-card .card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.74);
+}
+
 @media (max-width: 767px) {
     .container {
         width: auto;
@@ -452,6 +484,7 @@ nav .brand-logo {
         align-items: center;
         justify-content: center;
         align-content: center;
+        font-size: 20px;
     }
 
     .brand-logo img {
@@ -460,6 +493,24 @@ nav .brand-logo {
 
     #toast-container {
         top: 10% !important;
+    }
+
+    .btn {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .delete-form form,
+    .confirm-logout form {
+        width: 90%;
+    }
+
+    .delete-form form h3 {
+        font-size: 16px;
+    }
+
+    .dash-card .card-content a h4 {
+        font-size: 15px;
     }
 }
 

@@ -29,16 +29,19 @@ class ExpenseController extends Controller
         $expenses = new Expense();
     
         if ( $request->s ) {
-            if ( $request->u ) {
-                $expenses = $expenses->where( 'user_id', $request->u );
+            if ($request->u) {
+                $expenses = $expenses->where('user_id', $request->u);
             }
-            if ( $request->from ) {
-                $from     = Carbon::parse( $request->from )->toDateString();
-                $expenses = $expenses->where( 'date', '>=', $from );
+            if ($request->t) {
+                $expenses = $expenses->where('type', $request->t);
             }
-            if ( $request->to ) {
-                $to       = Carbon::parse( $request->to )->toDateString();
-                $expenses = $expenses->where( 'date', '<=', $to );
+            if ($request->from) {
+                $from     = Carbon::parse($request->from)->toDateString();
+                $expenses = $expenses->where('date', '>=', $from);
+            }
+            if ($request->to) {
+                $to       = Carbon::parse($request->to)->toDateString();
+                $expenses = $expenses->where('date', '<=', $to);
             }
         }
         $expenses = $expenses->orderByDesc( "date" );

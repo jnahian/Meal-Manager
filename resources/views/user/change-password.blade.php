@@ -5,7 +5,7 @@
 
         @include('elements.sideNav')
 
-        <div class="col m9 s12">
+        <div class="col m10 s12">
             {!! Form::open(['route' => ['user.update-password', $user->id], 'method' => 'PUT']) !!}
             {!! Form::hidden('previous', url()->previous()) !!}
             <div class="card">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="card-action center-align">
-                    <button type="submit" class="btn green btn-large" onclick="submit_form(this, event)">
+                    <button type="submit" class="btn green" onclick="submit_form(this, event)">
                         <i class="material-icons">save</i>
                         Update Password
                     </button>

@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="card-action center-align">
-                        <button type="submit" class="btn green btn-large">
+                        <button type="submit" class="btn green">
                             <i class="material-icons">person_add</i>
                             Add Member
                         </button>

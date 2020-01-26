@@ -93,8 +93,8 @@ if (!function_exists('expense_types')) {
 
         if ($val) {
             if ($badge) {
-                if ($val == 1) return "<span class='new badge green' data-badge-caption=''>{$status[$val]}</span>";
-                elseif ($val == 9) return "<span class='new badge orange' data-badge-caption=''>{$status[$val]}</span>";
+                if ($val == 'R') return "<span class='blue-text' data-badge-caption=''>{$status[$val]}</span>";
+                elseif ($val == 'O') return "<span class='orange-text' data-badge-caption=''>{$status[$val]}</span>";
             } else {
                 return isset($status[$val]) ? $status[$val] : "";
             }
