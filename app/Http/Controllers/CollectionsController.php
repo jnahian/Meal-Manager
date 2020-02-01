@@ -68,12 +68,13 @@ class CollectionsController extends Controller
      */
     public function store( Request $request )
     {
-        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
-        $request->validate( [
-            'date'    => 'required',
-            'user_id' => 'required',
-            'amount'  => 'required|numeric',
-        ] );
+        $response = ['success' => false, 'msg' => '', 'redirect' => false];
+        $cp       = Auth::user()->currentPermission();
+        $request->validate([
+                               'date'    => ['required', "after_or_equal:{$cp->from}", "before_or_equal:{$cp->to}"],
+                               'user_id' => 'required',
+                               'amount'  => 'required|numeric',
+                           ]);
         
         try {
             $collection             = new Collection();
@@ -130,12 +131,13 @@ class CollectionsController extends Controller
      */
     public function update( Request $request, Collection $collection )
     {
-        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
-        $request->validate( [
-            'date'    => 'required',
-            'user_id' => 'required',
-            'amount'  => 'required|numeric',
-        ] );
+        $response = ['success' => false, 'msg' => '', 'redirect' => false];
+        $cp       = Auth::user()->currentPermission();
+        $request->validate([
+                               'date'    => ['required', "after_or_equal:{$cp->from}", "before_or_equal:{$cp->to}"],
+                               'user_id' => 'required',
+                               'amount'  => 'required|numeric',
+                           ]);
         try {
             $collection->date       = Carbon::parse( $request->date )->toDateTimeString();
             $collection->user_id    = $request->user_id;
@@ -145,7 +147,7 @@ class CollectionsController extends Controller
             $collection->updated_by = Auth::user()->id;
             $collection->updated_at = Carbon::now()->toDateTimeString();
             $collection->save();
-            
+
             $response['success']  = TRUE;
             $response['redirect'] = $request->previous;
             $response['msg']      = "Collection Updated Successfully!";
@@ -154,7 +156,7 @@ class CollectionsController extends Controller
         }
         return response()->json( $response );
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *

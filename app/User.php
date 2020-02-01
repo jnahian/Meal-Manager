@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserPermission::class);
     }
+
+    public function currentPermission()
+    {
+        return $this->permissions()->latest()->first();
+    }
 }

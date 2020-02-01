@@ -8,20 +8,19 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
-    
+
     public function __construct()
     {
-        $this->middleware('hasPerm', ['except' => ['index', 'show', 'change_password', 'update_password']]);
         $this->middleware('onlyMe', ['only' => 'change_password', 'update_password']);
+        $this->middleware('hasPerm', ['except' => ['index', 'show', 'change_password', 'update_password']]);
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +30,7 @@ class UsersController extends Controller
     {
         $title = "Member List";
         $users = new User();
-        
+
         if ( $request->s ) {
             if ( $request->u ) {
                 $users = $users->where( 'user_id', $request->u );
@@ -47,10 +46,10 @@ class UsersController extends Controller
         }
         $users = $users->latest();
         $users = $users->paginate( 15 )->appends( $request->all() );
-        
+
         return view( 'user.index', compact( 'title', 'users' ) );
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -61,7 +60,7 @@ class UsersController extends Controller
         $title = "Add Member";
         return view( 'user.create', compact( 'title' ) );
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -77,7 +76,7 @@ class UsersController extends Controller
             'mobile'   => [ 'required', 'numeric', 'digits:11', 'unique:users' ],
             'password' => [ 'required', 'string', 'min:6', 'confirmed' ],
         ] );
-        
+
         try {
             $user             = new User();
             $user->name       = $request->name;
@@ -88,17 +87,17 @@ class UsersController extends Controller
             $user->role       = 2;
             $user->created_at = Carbon::now()->toDateTimeString();
             $user->save();
-            
+
             $response['success']  = TRUE;
             $response['redirect'] = route( 'user.index' );
             $response['msg']      = "Member Saved Successfully!";
         } catch ( Exception $exception ) {
             $response['msg'] = $exception->getMessage();
         }
-        
+
         return response()->json( $response );
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -110,7 +109,7 @@ class UsersController extends Controller
         $title = "Show Details ";
         return view( 'user.show', compact( 'title', 'user' ) );
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -122,7 +121,7 @@ class UsersController extends Controller
         $title = "Edit Member";
         return view( 'user.edit', compact( 'title', 'user' ) );
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -133,21 +132,21 @@ class UsersController extends Controller
     public function update( Request $request, User $user )
     {
         $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
-        
+
         $request->validate( [
             'name'   => [ 'required', 'string', 'max:255' ],
             'email'  => [ 'required', 'string', 'email', 'max:255', Rule::unique( 'users' )->ignore( $user->id ) ],
             'mobile' => [ 'required', 'numeric', 'digits:11', Rule::unique( 'users' )->ignore( $user->id ) ],
         ] );
-        
+
         try {
-            
+
             $user->name       = $request->name;
             $user->email      = $request->email;
             $user->mobile     = $request->mobile;
             $user->updated_at = Carbon::now()->toDateTimeString();
             $user->save();
-            
+
             $response['success']  = TRUE;
             $response['redirect'] = $request->previous;
             $response['msg']      = "Member Updated Successfully!";
@@ -156,7 +155,7 @@ class UsersController extends Controller
         }
         return response()->json( $response );
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -169,7 +168,7 @@ class UsersController extends Controller
         $users = User::getDropdown();
         return view( 'user.permission', compact( 'title', 'user', 'users' ) );
     }
-    
+
     public function update_permission( Request $request, User $user )
     {
         $response = ['success' => false, 'msg' => '', 'redirect' => false];
@@ -203,38 +202,34 @@ class UsersController extends Controller
         }
         return response()->json( $response );
     }
-    
+
     public function change_password( User $user )
     {
         $title = "Change Password";
         return view( 'user.change-password', compact( 'title', 'user' ) );
     }
-    
+
     public function update_password( Request $request, User $user )
     {
-        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
-        if ( Auth::id() == $user->id ) {
-            $request->validate( [
-                'password' => 'required|min:6|confirmed',
-            ] );
-            
-            try {
-                $user->password   = bcrypt( $request->password );
-                $user->updated_at = Carbon::now()->toDateString();
-                $user->save();
-                
-                $response['success']  = TRUE;
-                $response['redirect'] = $request->previous;
-                $response['msg']      = "User Password Changed Successfully!";
-            } catch ( Exception $exception ) {
-                $response['msg'] = $exception->getMessage();
-            }
-        } else {
-            $response['msg'] = 'Permission Denied!';
+        $response = ['success' => false, 'msg' => '', 'redirect' => false];
+        $request->validate([
+                               'password' => 'required|min:6|confirmed'
+                           ]);
+
+        try {
+            $user->password   = bcrypt($request->password);
+            $user->updated_at = Carbon::now()->toDateString();
+            $user->save();
+
+            $response['success']  = true;
+            $response['redirect'] = $request->previous;
+            $response['msg']      = "User Password Changed Successfully!";
+        } catch (Exception $exception) {
+            $response['msg'] = $exception->getMessage();
         }
-        return response()->json( $response );
+        return response()->json($response);
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -244,7 +239,7 @@ class UsersController extends Controller
     public function destroy( User $user )
     {
         $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
-        
+
         try {
             $user->delete();
             $response['success']  = TRUE;
@@ -253,7 +248,7 @@ class UsersController extends Controller
         } catch ( Exception $exception ) {
             $response['msg'] = $exception->getMessage();
         }
-        
+
         return response()->json( $response );
     }
 }

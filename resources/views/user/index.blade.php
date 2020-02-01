@@ -58,6 +58,12 @@
                                                 <span class="material-icons">lock_open</span>
                                             </a>
 
+                                            <a href="{{ route('user.change-password', $user->id) }}" class="btn-small btn-action waves-effect waves-light blue tooltipped"
+                                               data-position="top"
+                                               data-tooltip="Change Password">
+                                                <span class="material-icons">vpn_key</span>
+                                            </a>
+
                                             <a href="javascript:" class="btn-small btn-action waves-effect waves-light red tooltipped" data-position="top"
                                                data-tooltip="Delete" onclick="jShowDelete(this)">
                                                 <span class="material-icons">delete</span>

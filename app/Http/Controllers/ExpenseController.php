@@ -72,14 +72,15 @@ class ExpenseController extends Controller
      */
     public function store( Request $request )
     {
-        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
-        $request->validate( [
-            'user_id' => 'required',
-            'date'    => 'required',
-            'purpose' => 'required',
-            'type'    => 'required',
-            'amount'  => 'required|numeric',
-        ] );
+        $response = ['success' => false, 'msg' => '', 'redirect' => false];
+        $cp       = Auth::user()->currentPermission();
+        $request->validate([
+                               'user_id' => 'required',
+                               'date'    => ['required', "after_or_equal:{$cp->from}", "before_or_equal:{$cp->to}"],
+                               'purpose' => 'required',
+                               'type'    => 'required',
+                               'amount'  => 'required|numeric',
+                           ]);
     
         try {
             $expense             = new Expense();
@@ -138,15 +139,15 @@ class ExpenseController extends Controller
      */
     public function update( Request $request, Expense $expense )
     {
-        $response = [ 'success' => FALSE, 'msg' => '', 'redirect' => FALSE ];
-        
-        $request->validate( [
-            'user_id' => 'required',
-            'date'    => 'required',
-            'purpose' => 'required',
-            'type'    => 'required',
-            'amount'  => 'required|numeric',
-        ] );
+        $response = ['success' => false, 'msg' => '', 'redirect' => false];
+        $cp       = Auth::user()->currentPermission();
+        $request->validate([
+                               'user_id' => 'required',
+                               'date'    => ['required', "after_or_equal:{$cp->from}", "before_or_equal:{$cp->to}"],
+                               'purpose' => 'required',
+                               'type'    => 'required',
+                               'amount'  => 'required|numeric',
+                           ]);
     
         try {
             $expense->date       = Carbon::parse( $request->date )->toDateTimeString();

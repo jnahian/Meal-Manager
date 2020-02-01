@@ -46,7 +46,7 @@
                         <tr>
                             <th>Status</th>
                             <th>:</th>
-                            <td>{!! status($expense->status, TRUE) !!}</td>
+                            <td>{!! status($expense->status, true) !!}</td>
                         </tr>
                         <tr>
                             <th width="15%">Created</th>
@@ -67,25 +67,27 @@
                         <span class="material-icons">list</span>
                         <span class="hide-on-small-and-down">Expense List</span>
                     </a>
-                    <a href="{{ route('expense.edit', $expense->id) }}" class="btn-small waves-effect waves-light cyan tooltipped" data-position="top"
-                       data-tooltip="Change">
-                        <span class="material-icons">edit</span>
-                        <span class="hide-on-small-and-down">Change</span>
-                    </a>
+                    @if(hasPermission() && isCreatedByMe($expense))
+                        <a href="{{ route('expense.edit', $expense->id) }}" class="btn-small waves-effect waves-light cyan tooltipped" data-position="top"
+                           data-tooltip="Change">
+                            <span class="material-icons">edit</span>
+                            <span class="hide-on-small-and-down">Change</span>
+                        </a>
 
-                    <a href="javascript:" class="btn-small waves-effect waves-light red tooltipped" data-position="top"
-                       data-tooltip="Delete" onclick="jShowDelete(this)">
-                        <span class="material-icons">delete</span>
-                        <span class="hide-on-small-and-down">Delete</span>
-                    </a>
+                        <a href="javascript:" class="btn-small waves-effect waves-light red tooltipped" data-position="top"
+                           data-tooltip="Delete" onclick="jShowDelete(this)">
+                            <span class="material-icons">delete</span>
+                            <span class="hide-on-small-and-down">Delete</span>
+                        </a>
 
-                    <div class="delete-form" onclick="jCancelDelete(this)">
-                        {!! Form::open(['route' => ['expense.destroy', $expense->id], 'method' => 'DELETE']) !!}
-                        <h3>You want to delete this. Are you sure?</h3>
-                        <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete</button>
-                        <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
-                        {!! Form::close() !!}
-                    </div>
+                        <div class="delete-form" onclick="jCancelDelete(this)">
+                            {!! Form::open(['route' => ['expense.destroy', $expense->id], 'method' => 'DELETE']) !!}
+                            <h3>You want to delete this. Are you sure?</h3>
+                            <button type="submit" class="btn-small red" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete</button>
+                            <button type="button" class="btn-small grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
+                            {!! Form::close() !!}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

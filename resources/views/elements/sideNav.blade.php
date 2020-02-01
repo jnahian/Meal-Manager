@@ -31,5 +31,6 @@
                 Change Password</a></li>
 
         <li class="collection-item {{ isActiveMenu('about')  }}"><a href="{{ route('about') }}"><i class="material-icons">info_outline</i> About</a></li>
+        <li class="collection-item"><a href="#" onclick="jLogoutConfirm(this)"><i class="material-icons">power_settings_new</i> Logout</a></li>
     </ul>
 </div>

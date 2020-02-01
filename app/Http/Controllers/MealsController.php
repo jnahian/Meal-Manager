@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class MealsController extends Controller
@@ -72,8 +73,9 @@ class MealsController extends Controller
     public function store(Request $request)
     {
         $response = ['success' => false, 'msg' => '', 'redirect' => false];
+        $cp       = Auth::user()->currentPermission();
         $request->validate([
-                               'date'      => 'required',
+                               'date'      => ['required', "after_or_equal:{$cp->from}", "before_or_equal:{$cp->to}"],
                                'user_id.*' => 'required',
                                'meal.*'    => 'nullable|numeric',
                            ]);
@@ -82,14 +84,15 @@ class MealsController extends Controller
         try {
 
 
-            $date = Carbon::parse($request->date)->toDateTimeString();
+            $date   = Carbon::parse($request->date)->toDateTimeString();
+            $authId = Auth::id();
 
             foreach ($request->user_id as $id => $user) {
                 $meal  = $request->meal[$id] ?? 0;
                 $guest = $request->guest[$id] ?? 0;
                 Meal::updateOrCreate(
-                    ['date' => $date, 'user_id' => $user],
-                    ['meal' => $meal, 'guest' => $guest, 'total' => $meal + $guest]
+                    ['date' => $date, 'user_id' => $user, 'created_by' => $authId],
+                    ['meal' => $meal, 'guest' => $guest, 'total' => $meal + $guest, 'updated_by' => $authId]
                 );
             }
 
@@ -140,18 +143,19 @@ class MealsController extends Controller
     public function update(Request $request, Meal $meal)
     {
         $response = ['success' => false, 'msg' => '', 'redirect' => false];
-
+        $cp       = Auth::user()->currentPermission();
         $request->validate([
-                               'date'    => 'required',
+                               'date'    => ['required', "after_or_equal:{$cp->from}", "before_or_equal:{$cp->to}"],
                                'user_id' => 'required',
                                'meal'    => 'required',
                            ]);
 
         try {
-            $meal->date  = Carbon::parse($request->date)->toDateTimeString();
-            $meal->meal  = $request->meal;
-            $meal->guest = $request->guest;
-            $meal->total = $request->meal + $request->guest;
+            $meal->date       = Carbon::parse($request->date)->toDateTimeString();
+            $meal->meal       = $request->meal;
+            $meal->guest      = $request->guest;
+            $meal->total      = $request->meal + $request->guest;
+            $meal->updated_by = Auth::id();
             $meal->save();
 
             $response['success']  = true;

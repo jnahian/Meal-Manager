@@ -83,8 +83,8 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
                 <h3>Are you sure? You want to Logout.</h3>
-                <button type="submit" class="btn orange darken-3"><span class="material-icons">power_settings_new</span> Logout</button>
-                <button type="button" class="btn grey" onclick="jLogoutCancel(this)"><span class="material-icons">close</span> Cancel</button>
+                <button type="submit" class="btn-small orange darken-3"><span class="material-icons">power_settings_new</span> Logout</button>
+                <button type="button" class="btn-small grey" onclick="jLogoutCancel(this)"><span class="material-icons">close</span> Cancel</button>
             </form>
         </div>
     </nav>

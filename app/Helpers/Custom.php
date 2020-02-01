@@ -169,3 +169,13 @@ if (!function_exists('isActiveMenu')) {
         return Request::route()->getName() == $routeName ? 'active' : '';
     }
 }
+
+
+if (!function_exists('isCreatedByMe')) {
+    function isCreatedByMe($model)
+    {
+        if (isAdmin()) return true;
+
+        if ($model->created_by == \auth()->id()) return true;
+    }
+}

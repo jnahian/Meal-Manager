@@ -68,8 +68,8 @@
                     <div class="delete-form" onclick="jCancelDelete(this)">
                         {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE']) !!}
                         <h3>You want to delete this. Are you sure?</h3>
-                        <button type="submit" class="btn red darken-3" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete</button>
-                        <button type="button" class="btn grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
+                        <button type="submit" class="btn-small red" onclick="submit_form(this, event)"><span class="material-icons">delete</span> Delete</button>
+                        <button type="button" class="btn-small grey" onclick="jCancelDelete(this)"><span class="material-icons">close</span>Cancel</button>
                         {!! Form::close() !!}
                     </div>
                 </div>
