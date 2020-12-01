@@ -29,7 +29,9 @@ class MonthlySummery extends Model
             $data['names'] = $meals->pluck('user.name', 'user.id')->toArray();
             $data['data']  = [];
             foreach ($meals as $meal) {
-                $data['data'][$meal->month][$meal->user->id] = $meal;
+                if($meal->user) {
+                    $data['data'][$meal->month][$meal->user->id] = $meal;
+                }
             }
         }
 
